@@ -10,6 +10,8 @@ import UIKit
 class PokemonCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "pokemonCell"
+    
+    private var pokemonCellViewModel: PokemonCellViewModel?
 
     @IBOutlet var mainView: UIImageView!
     @IBOutlet var pokemonImageView: UIImageView!
@@ -21,11 +23,9 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         mainView.backgroundColor = .white
     }
     
-    
-    
-    func configureCell(with cellViewModel: PokemonCellViewModel) {
-        pokemonIdLabel.text = cellViewModel.pokemonId
-        pokemonNameLabel.text = cellViewModel.pokemonName.capitalized
-        pokemonImageView.image = cellViewModel.pokemonImage
+    func configureCell(model: PokemonCellViewModel) {
+        pokemonIdLabel.text = "#" + model.pokemonId
+        pokemonNameLabel.text = model.pokemonName
+        pokemonImageView.image = model.pokemonImage
     }
 }

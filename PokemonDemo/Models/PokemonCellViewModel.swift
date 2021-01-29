@@ -12,36 +12,22 @@ public class PokemonCellViewModel {
     var pokemonId: String = ""
     var pokemonName: String = ""
     var pokemonImage: UIImage?
+    var pokemonTypes: [Types] = []
     
-    func downloadPokemonInformation(from response: Response, completion: @escaping (Result<Bool,Error>) -> Void) {
-        
-        // Create the dispatch group
-        let serviceGroup = DispatchGroup()
-        
-        for response in response.results {
-            
-            let url = URL(string: response.url)
-            let pokemonId = url?.pathComponents.last ?? "0"
-            
-            // Add each service call to the Service Group
-            serviceGroup.enter()
-            self.fetchPokemonDetail(pokeId: pokemonId) { (result) in
-                switch result {
-                case .failure(let error):
-                    print(error.localizedDescription)
-                    // Remove operation from service group
-                    serviceGroup.leave()
-                    break
-                case .success:
-                    // Remove operation from service group
-                    serviceGroup.leave()
-                    break
-                }
-            }
-            
-            // When service groups
-            serviceGroup.notify(queue: DispatchQueue.main) {
-                completion(.success(true))
+    init(with id: String) {
+        self.pokemonId = id
+    }
+    
+    func downloadPokemonInformation(completion: @escaping (Result<Pokemon,Error>) -> Void) {
+        self.fetchPokemonDetail(pokeId: self.pokemonId) { (result) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+                completion(.failure(error))
+                break
+            case .success(let pokemon):
+                completion(.success(pokemon))
+                break
             }
         }
     }
@@ -70,12 +56,13 @@ public class PokemonCellViewModel {
             }
             
             self.pokemonId = String(decodedResult.id)
-            self.pokemonName = decodedResult.name
+            self.pokemonName = decodedResult.name.capitalized
+            self.pokemonTypes = decodedResult.types
             
             self.getPokemonImage(from: decodedResult.sprites.frontDefault) { (result) in
                 switch result {
                 case .failure:
-                    self.pokemonImage = nil
+                    self.pokemonImage = UIImage(named: "MissingNo.")
                     completion(.success(decodedResult))
                     break
                     
@@ -87,10 +74,9 @@ public class PokemonCellViewModel {
         }.resume()
     }
     
+    // Retrieve pokemon Image
     private func getPokemonImage(from urlString: String, completion: @escaping (Result<UIImage,Error>) -> Void) {
-        
         let pokemonURL = URL(string: urlString)
-        
         URLSession.shared.dataTask(with: pokemonURL!) { (data, response, error) in
             if error != nil {
                 completion(.failure(error!))

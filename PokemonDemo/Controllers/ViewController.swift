@@ -9,11 +9,10 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet var activityView: UIActivityIndicatorView!
+    @IBOutlet var collectionView: UICollectionView!
     
     private var pokemonListViewModel = PokemonListViewModel()
-    private var pokemonCellViewModel = PokemonCellViewModel()
+    private var pokemonCellViewModel: PokemonCellViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,18 +23,21 @@ class ViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        self.activityView.startAnimating()
-        pokemonListViewModel.fetchPokemons(with: 0) { (result) in
+        fetchPokemons()
+    }
+    
+    func fetchPokemons() {
+        //self.showActivityView()
+        let index = self.pokemonListViewModel.results.count
+        pokemonListViewModel.fetchPokemons(with: index) { (result) in
             switch result {
             case .failure(let error):
                 print(error)
+                //self.hideActiviyView()
                 break
-            case .success(let results):
-                self.pokemonCellViewModel.downloadPokemonInformation(from: results) { (result) in
-                    self.activityView.stopAnimating()
-                    DispatchQueue.main.async {
-                        self.collectionView.reloadData()
-                    }
+            case .success:
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
                 }
                 break
             }
@@ -46,8 +48,9 @@ class ViewController: UIViewController {
 // MARK: UICollectionView Extensions
 extension ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let next = self.storyboard?.instantiateViewController(withIdentifier: "PokemonDetailViewController") as! PokemonDetailViewController
-        self.present(next, animated: true, completion: nil)
+        let detailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "PokemonDetailViewController") as! PokemonDetailViewController
+        detailsViewController.model = self.pokemonListViewModel.cellModels[indexPath.row]
+        self.present(detailsViewController, animated: true, completion: nil)
     }
 }
 
@@ -58,6 +61,9 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PokemonCollectionViewCell.identifier, for: indexPath) as? PokemonCollectionViewCell
+        
+        let model = self.pokemonListViewModel.cellModels[indexPath.row]
+        cell?.configureCell(model: model)
         return cell!
     }
 }
@@ -67,26 +73,14 @@ extension ViewController: UIScrollViewDelegate {
         let offset = scrollView.contentOffset.y
         
         // Check if we should fetch more data
-        if offset > (self.collectionView.contentSize.height - scrollView.frame.height - 500) {
+        if offset > (self.collectionView.contentSize.height - (scrollView.frame.height)) {
             
             //So we don't get multiple calls
             guard !self.pokemonListViewModel.isFetching else {
                 return
             }
             
-            self.pokemonListViewModel.fetchPokemons(with: self.pokemonListViewModel.results.count) { (results) in
-                
-                switch results {
-                case .success:
-                    DispatchQueue.main.async {
-                        self.collectionView.reloadData()
-                    }
-                    break
-                case .failure(let error):
-                    print(error)
-                    break
-                }
-            }
+            fetchPokemons()
         }
     }
 }
