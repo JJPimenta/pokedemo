@@ -24,19 +24,19 @@
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="30" minY="30" maxX="30" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="qxq-T5-WFc">
-                                        <rect key="frame" x="0.0" y="0.0" width="150" height="200"/>
+                                        <rect key="frame" x="30" y="30" width="150" height="190"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="GuJ-ao-USS">
-                                            <rect key="frame" x="0.0" y="0.0" width="150" height="200"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="190"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="150" height="200"/>
+                                        <size key="customSize" width="150" height="190"/>
                                         <connections>
-                                            <segue destination="6M8-qX-e2f" kind="show" id="XEO-mP-4Nl"/>
+                                            <segue destination="6M8-qX-e2f" kind="presentation" id="XEO-mP-4Nl"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -51,13 +51,14 @@
                             <constraint firstAttribute="bottom" secondItem="wMp-Tg-RFJ" secondAttribute="bottom" id="e9A-e9-o53"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="sQq-e6-h4j"/>
                     <connections>
                         <outlet property="collectionView" destination="wMp-Tg-RFJ" id="Y1e-SK-a5N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="71.014492753623188" y="83.705357142857139"/>
+            <point key="canvasLocation" x="981.15942028985512" y="83.705357142857139"/>
         </scene>
         <!--Pokemon Detail View Controller-->
         <scene sceneID="Mvy-d2-YqM">
@@ -104,6 +105,17 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qek-Pe-gg4" userLabel="Close Button">
+                                                <rect key="frame" x="374" y="20" width="20" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="CXe-yW-Xhl"/>
+                                                    <constraint firstAttribute="width" constant="20" id="Nmr-94-Pnm"/>
+                                                </constraints>
+                                                <state key="normal" title="Button" image="close"/>
+                                                <connections>
+                                                    <action selector="closeButtonClicked:" destination="6M8-qX-e2f" eventType="touchUpInside" id="6l6-p4-3B7"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -113,7 +125,9 @@
                                             <constraint firstItem="WMx-pL-hvj" firstAttribute="leading" secondItem="NOI-Xf-5pT" secondAttribute="leading" constant="30" id="FXh-av-woH"/>
                                             <constraint firstItem="rse-hu-QDH" firstAttribute="top" secondItem="kFj-AM-TWT" secondAttribute="bottom" constant="25" id="PaR-q8-Ech"/>
                                             <constraint firstItem="WMx-pL-hvj" firstAttribute="top" secondItem="Q9u-j5-0zA" secondAttribute="bottom" constant="20" id="Yd4-vC-aiO"/>
+                                            <constraint firstItem="qek-Pe-gg4" firstAttribute="top" secondItem="NOI-Xf-5pT" secondAttribute="top" constant="20" id="fNM-jG-gAZ"/>
                                             <constraint firstAttribute="height" constant="1000" id="foH-vl-kxC"/>
+                                            <constraint firstAttribute="trailing" secondItem="qek-Pe-gg4" secondAttribute="trailing" constant="20" id="q4g-6K-mOF"/>
                                             <constraint firstItem="kFj-AM-TWT" firstAttribute="centerX" secondItem="NOI-Xf-5pT" secondAttribute="centerX" id="qqT-cf-1vI"/>
                                             <constraint firstItem="fee-CX-Ots" firstAttribute="leading" secondItem="WMx-pL-hvj" secondAttribute="trailing" constant="20" id="rg0-sE-n1B"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fee-CX-Ots" secondAttribute="trailing" constant="30" id="sz4-YM-nM8"/>
@@ -144,21 +158,22 @@
                     </view>
                     <navigationItem key="navigationItem" id="UFU-9P-sR1"/>
                     <connections>
-                        <outlet property="descriptionTextLabel" destination="fee-CX-Ots" id="dgI-KC-e4R"/>
-                        <outlet property="descriptionTitleLabel" destination="WMx-pL-hvj" id="B1s-yI-AaY"/>
                         <outlet property="idLabel" destination="rse-hu-QDH" id="7dh-3U-OGJ"/>
                         <outlet property="imgView" destination="kFj-AM-TWT" id="dfW-UW-O8J"/>
                         <outlet property="nameLabel" destination="Q9u-j5-0zA" id="JLv-Cl-ms1"/>
                         <outlet property="scrollView" destination="jpe-Lh-KZw" id="zxr-hF-zbd"/>
                         <outlet property="scrollViewHeight" destination="foH-vl-kxC" id="Gaa-aT-lVG"/>
+                        <outlet property="typesTextLabel" destination="fee-CX-Ots" id="dgI-KC-e4R"/>
+                        <outlet property="typesTitleLabel" destination="WMx-pL-hvj" id="B1s-yI-AaY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DlD-Wy-bK0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="844.92753623188412" y="83.705357142857139"/>
+            <point key="canvasLocation" x="1755.072463768116" y="83.705357142857139"/>
         </scene>
     </scenes>
     <resources>
+        <image name="close" width="42.5" height="42.5"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
