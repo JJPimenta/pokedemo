@@ -13,7 +13,7 @@ public class PokemonListViewModel {
     var results = [Results]()
     var isFetching = false
     
-    let baseURL = "https://pokeapi.co/api/v2/pokemon?limit=50&offset="
+    let baseURL = "https://pokeapi.co/api/v2/pokemon?limit=100&offset="
     
     func fetchPokemons(with offset: Int, completion:  @escaping (Result<Response,Error>) -> Void) -> Void {
         
@@ -43,11 +43,10 @@ public class PokemonListViewModel {
             
             self.results.append(contentsOf: decodedResult.results)
             self.createCellViewModels(newResults: decodedResult.results, completion: { () in
+                //Fetching just ended, reset to false
+                self.isFetching = false
                 completion(.success(decodedResult))
             })
-            
-            //Fetching just ended, reset to false
-            self.isFetching = false
             
         }.resume()
     }
