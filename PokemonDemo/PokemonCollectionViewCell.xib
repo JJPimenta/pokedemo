@@ -10,33 +10,33 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="pokemonCell" id="gTV-IL-0wX" customClass="PokemonCollectionViewCell" customModule="PokemonDemo" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="150" height="200"/>
+            <rect key="frame" x="0.0" y="0.0" width="150" height="190"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="150" height="200"/>
+                <rect key="frame" x="0.0" y="0.0" width="150" height="190"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="weZ-rU-99b" userLabel="Main View">
-                        <rect key="frame" x="0.0" y="0.0" width="150" height="200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="150" height="190"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gUe-dZ-RuD" userLabel="Pokemon Image View">
-                                <rect key="frame" x="20" y="15" width="110" height="130"/>
+                                <rect key="frame" x="20" y="15" width="110" height="110"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="130" id="FBN-nW-iT9"/>
+                                    <constraint firstAttribute="height" constant="110" id="FBN-nW-iT9"/>
                                     <constraint firstAttribute="width" constant="110" id="UPg-Sf-jPa"/>
                                 </constraints>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="LsZ-QC-Ehh">
-                                <rect key="frame" x="31" y="160" width="88" height="20"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="stj-Fo-y62">
+                                <rect key="frame" x="54.5" y="140" width="41.5" height="41"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qxf-Yv-Le0" userLabel="Pokemon Id Label">
-                                        <rect key="frame" x="0.0" y="0.0" width="41.5" height="20"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXY-HW-LoV" userLabel="Id Label">
+                                        <rect key="frame" x="0.0" y="0.0" width="41.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="muo-Ex-xTJ" userLabel="Pokemon Name Label">
-                                        <rect key="frame" x="46.5" y="0.0" width="41.5" height="20"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bMf-Vx-YWr" userLabel="Name Label">
+                                        <rect key="frame" x="0.0" y="20.5" width="41.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -46,16 +46,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="LsZ-QC-Ehh" secondAttribute="trailing" constant="20" id="1n3-HT-gOO"/>
-                            <constraint firstItem="gUe-dZ-RuD" firstAttribute="leading" secondItem="weZ-rU-99b" secondAttribute="leading" constant="20" symbolic="YES" id="5HQ-yN-tSA"/>
-                            <constraint firstAttribute="bottom" secondItem="LsZ-QC-Ehh" secondAttribute="bottom" constant="20" id="9Cx-Co-1zq"/>
                             <constraint firstItem="gUe-dZ-RuD" firstAttribute="centerX" secondItem="weZ-rU-99b" secondAttribute="centerX" id="9h7-EV-0Wy"/>
-                            <constraint firstItem="LsZ-QC-Ehh" firstAttribute="centerX" secondItem="weZ-rU-99b" secondAttribute="centerX" id="GO3-MJ-twn"/>
-                            <constraint firstAttribute="width" constant="150" id="Vh2-mb-i1q"/>
-                            <constraint firstAttribute="height" constant="200" id="Z9f-FA-Z6f"/>
+                            <constraint firstAttribute="width" constant="150" id="Odf-9x-wde"/>
+                            <constraint firstAttribute="height" constant="190" id="Z9f-FA-Z6f"/>
                             <constraint firstItem="gUe-dZ-RuD" firstAttribute="top" secondItem="weZ-rU-99b" secondAttribute="top" constant="15" id="at6-qf-h1s"/>
-                            <constraint firstItem="LsZ-QC-Ehh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="weZ-rU-99b" secondAttribute="leading" constant="20" id="eoB-Ej-XpA"/>
-                            <constraint firstItem="LsZ-QC-Ehh" firstAttribute="top" secondItem="gUe-dZ-RuD" secondAttribute="bottom" constant="15" id="m15-1L-3SU"/>
+                            <constraint firstItem="stj-Fo-y62" firstAttribute="top" secondItem="gUe-dZ-RuD" secondAttribute="bottom" constant="15" id="fJL-RQ-kLl"/>
+                            <constraint firstItem="stj-Fo-y62" firstAttribute="centerX" secondItem="weZ-rU-99b" secondAttribute="centerX" id="kau-kQ-oID"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -67,14 +63,14 @@
                 <constraint firstAttribute="bottom" secondItem="weZ-rU-99b" secondAttribute="bottom" id="Ka3-bl-074"/>
                 <constraint firstItem="weZ-rU-99b" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="zq9-wa-XNg"/>
             </constraints>
-            <size key="customSize" width="150" height="200"/>
+            <size key="customSize" width="393" height="230"/>
             <connections>
                 <outlet property="mainView" destination="gUe-dZ-RuD" id="y4D-2T-uUe"/>
-                <outlet property="pokemonIdLabel" destination="qxf-Yv-Le0" id="VzS-b8-4yk"/>
+                <outlet property="pokemonIdLabel" destination="bXY-HW-LoV" id="dXY-I3-bJI"/>
                 <outlet property="pokemonImageView" destination="gUe-dZ-RuD" id="8Wd-0q-L59"/>
-                <outlet property="pokemonNameLabel" destination="muo-Ex-xTJ" id="Afx-iP-ThZ"/>
+                <outlet property="pokemonNameLabel" destination="bMf-Vx-YWr" id="84P-iF-p9k"/>
             </connections>
-            <point key="canvasLocation" x="-86.956521739130437" y="-81.696428571428569"/>
+            <point key="canvasLocation" x="103.62318840579711" y="-71.651785714285708"/>
         </collectionViewCell>
     </objects>
 </document>
