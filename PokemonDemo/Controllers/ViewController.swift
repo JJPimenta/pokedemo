@@ -27,16 +27,17 @@ class ViewController: UIViewController {
     }
     
     func fetchPokemons() {
-        //self.showActivityView()
+        self.showActivityView()
         let index = self.pokemonListViewModel.results.count
         pokemonListViewModel.fetchPokemons(with: index) { (result) in
             switch result {
             case .failure(let error):
                 print(error)
-                //self.hideActiviyView()
+                self.hideActivityView()
                 break
             case .success:
                 DispatchQueue.main.async {
+                    self.hideActivityView()
                     self.collectionView.reloadData()
                 }
                 break
@@ -66,21 +67,41 @@ extension ViewController: UICollectionViewDataSource {
         cell?.configureCell(model: model)
         return cell!
     }
-}
-
-extension ViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offset = scrollView.contentOffset.y
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         
-        // Check if we should fetch more data
-        if offset > (self.collectionView.contentSize.height - (scrollView.frame.height)) {
-            
-            //So we don't get multiple calls
-            guard !self.pokemonListViewModel.isFetching else {
-                return
-            }
-            
+        let lastRowIndex = collectionView.numberOfItems(inSection: 0) - 1
+        
+        if indexPath.row == lastRowIndex && !self.pokemonListViewModel.isFetching {
             fetchPokemons()
         }
+    }
+}
+
+// MARK: Utility Methods Extension
+extension ViewController {
+    
+    func showActivityView() {
+        let loadingView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        loadingView.backgroundColor = .black
+        loadingView.layer.opacity = 0.5
+        
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.color = .white
+        activityIndicator.style = .large
+        activityIndicator.center = loadingView.center
+        activityIndicator.startAnimating()
+        
+        loadingView.addSubview(activityIndicator)
+        self.view.addSubview(loadingView)
+    }
+    
+    func hideActivityView() {
+        let loadingView = self.view.subviews.last
+        UIView.animate(withDuration: 0.2, animations: {
+            loadingView!.alpha = 0.0
+            }, completion: { (finished: Bool) in
+                loadingView!.removeFromSuperview()
+        })
     }
 }
