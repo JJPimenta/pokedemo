@@ -15,23 +15,33 @@ public class PokemonCellViewModel {
     
     func downloadPokemonInformation(from response: Response, completion: @escaping (Result<Bool,Error>) -> Void) {
         
-        var counter = 0
+        // Create the dispatch group
+        let serviceGroup = DispatchGroup()
         
         for response in response.results {
             
             let url = URL(string: response.url)
             let pokemonId = url?.pathComponents.last ?? "0"
             
+            // Add each service call to the Service Group
+            serviceGroup.enter()
             self.fetchPokemonDetail(pokeId: pokemonId) { (result) in
                 switch result {
                 case .failure(let error):
-                    print(error)
-                    counter += 1
+                    print(error.localizedDescription)
+                    // Remove operation from service group
+                    serviceGroup.leave()
                     break
                 case .success:
-                    counter +=  1
+                    // Remove operation from service group
+                    serviceGroup.leave()
                     break
                 }
+            }
+            
+            // When service groups
+            serviceGroup.notify(queue: DispatchQueue.main) {
+                completion(.success(true))
             }
         }
     }
