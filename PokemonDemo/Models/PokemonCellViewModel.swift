@@ -22,7 +22,7 @@ public class PokemonCellViewModel {
         self.fetchPokemonDetail(pokeId: self.pokemonId) { (result) in
             switch result {
             case .failure(let error):
-                print(error.localizedDescription)
+                debugPrint(error)
                 completion(.failure(error))
                 break
             case .success(let pokemon):
@@ -39,7 +39,7 @@ public class PokemonCellViewModel {
         URLSession.shared.dataTask(with: URL(string: url)!) { (data, response, error) in
             
             guard let data = data, error == nil else {
-                print("Error when obtaing the pokemon details")
+                debugPrint(error!)
                 completion(.failure(error!))
                 return
             }
@@ -48,7 +48,7 @@ public class PokemonCellViewModel {
             do {
                 result = try JSONDecoder().decode(Pokemon.self, from: data)
             } catch {
-                print("Failed to decode object with error: \(error.localizedDescription)")
+                debugPrint(error)
             }
             
             guard let decodedResult = result else {
@@ -59,7 +59,14 @@ public class PokemonCellViewModel {
             self.pokemonName = decodedResult.name.capitalized
             self.pokemonTypes = decodedResult.types
             
-            self.getPokemonImage(from: decodedResult.sprites.frontDefault) { (result) in
+            guard let imgDefault = decodedResult.sprites.frontDefault else {
+                //sprites was nil, so show default image
+                self.pokemonImage = UIImage(named: "MissingNo.")
+                completion(.success(decodedResult))
+                return
+            }
+            
+            self.getPokemonImage(from: imgDefault ) { (result) in
                 switch result {
                 case .failure:
                     self.pokemonImage = UIImage(named: "MissingNo.")
@@ -79,6 +86,7 @@ public class PokemonCellViewModel {
         let pokemonURL = URL(string: urlString)
         URLSession.shared.dataTask(with: pokemonURL!) { (data, response, error) in
             if error != nil {
+                debugPrint(error!)
                 completion(.failure(error!))
             } else {
                 if (response as? HTTPURLResponse) != nil {

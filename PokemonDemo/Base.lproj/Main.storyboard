@@ -42,19 +42,39 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <view hidden="YES" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b5h-Ah-OpN" userLabel="Loading View">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="SNf-y7-ywc">
+                                        <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                                        <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="SNf-y7-ywc" firstAttribute="centerY" secondItem="b5h-Ah-OpN" secondAttribute="centerY" id="Gck-Go-BXr"/>
+                                    <constraint firstItem="SNf-y7-ywc" firstAttribute="centerX" secondItem="b5h-Ah-OpN" secondAttribute="centerX" id="HSX-3O-G1H"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wMp-Tg-RFJ" secondAttribute="trailing" id="BH8-cb-10p"/>
                             <constraint firstItem="wMp-Tg-RFJ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Gqq-Wy-utu"/>
+                            <constraint firstItem="b5h-Ah-OpN" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="OFi-vb-xJI"/>
                             <constraint firstItem="wMp-Tg-RFJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="RYF-gy-Ivx"/>
+                            <constraint firstAttribute="bottom" secondItem="b5h-Ah-OpN" secondAttribute="bottom" id="UWO-2e-KmO"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="b5h-Ah-OpN" secondAttribute="trailing" id="aYZ-x6-qhi"/>
                             <constraint firstAttribute="bottom" secondItem="wMp-Tg-RFJ" secondAttribute="bottom" id="e9A-e9-o53"/>
+                            <constraint firstItem="b5h-Ah-OpN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="i2M-Nk-8P8"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="sQq-e6-h4j"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="SNf-y7-ywc" id="GmI-gC-TiT"/>
                         <outlet property="collectionView" destination="wMp-Tg-RFJ" id="Y1e-SK-a5N"/>
+                        <outlet property="loadingView" destination="b5h-Ah-OpN" id="L8C-SU-pSo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

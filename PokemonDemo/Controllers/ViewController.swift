@@ -10,7 +10,8 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet var collectionView: UICollectionView!
-    
+    @IBOutlet var loadingView: UIView!
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     private var pokemonListViewModel = PokemonListViewModel()
     private var pokemonCellViewModel: PokemonCellViewModel?
     
@@ -32,7 +33,7 @@ class ViewController: UIViewController {
         pokemonListViewModel.fetchPokemons(with: index) { (result) in
             switch result {
             case .failure(let error):
-                print(error)
+                debugPrint(error)
                 self.hideActivityView()
                 break
             case .success:
@@ -72,6 +73,10 @@ extension ViewController: UICollectionViewDataSource {
         
         let lastRowIndex = collectionView.numberOfItems(inSection: 0) - 1
         
+        if self.pokemonListViewModel.next.isEmpty {
+            return
+        }
+        
         if indexPath.row == lastRowIndex && !self.pokemonListViewModel.isFetching {
             fetchPokemons()
         }
@@ -82,26 +87,18 @@ extension ViewController: UICollectionViewDataSource {
 extension ViewController {
     
     func showActivityView() {
-        let loadingView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        loadingView.backgroundColor = .black
-        loadingView.layer.opacity = 0.5
-        
-        let activityIndicator = UIActivityIndicatorView()
-        activityIndicator.color = .white
-        activityIndicator.style = .large
-        activityIndicator.center = loadingView.center
-        activityIndicator.startAnimating()
-        
-        loadingView.addSubview(activityIndicator)
-        self.view.addSubview(loadingView)
+        self.loadingView.alpha = 0.5
+        self.loadingView.isHidden = false
+        self.activityIndicator.isHidden = false
+        self.activityIndicator.startAnimating()
     }
     
     func hideActivityView() {
-        let loadingView = self.view.subviews.last
+        self.activityIndicator.startAnimating()
         UIView.animate(withDuration: 0.2, animations: {
-            loadingView!.alpha = 0.0
+            self.loadingView!.alpha = 0.0
             }, completion: { (finished: Bool) in
-                loadingView!.removeFromSuperview()
+                
         })
     }
 }

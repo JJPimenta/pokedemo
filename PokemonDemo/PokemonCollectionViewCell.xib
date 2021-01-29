@@ -27,16 +27,16 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="stj-Fo-y62">
-                                <rect key="frame" x="54.5" y="140" width="41.5" height="41"/>
+                                <rect key="frame" x="5" y="140" width="140" height="41"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXY-HW-LoV" userLabel="Id Label">
-                                        <rect key="frame" x="0.0" y="0.0" width="41.5" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="140" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bMf-Vx-YWr" userLabel="Name Label">
-                                        <rect key="frame" x="0.0" y="20.5" width="41.5" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="bMf-Vx-YWr" userLabel="Name Label">
+                                        <rect key="frame" x="0.0" y="20.5" width="140" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -46,12 +46,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="stj-Fo-y62" secondAttribute="trailing" constant="5" id="7So-WQ-bBn"/>
                             <constraint firstItem="gUe-dZ-RuD" firstAttribute="centerX" secondItem="weZ-rU-99b" secondAttribute="centerX" id="9h7-EV-0Wy"/>
                             <constraint firstAttribute="width" constant="150" id="Odf-9x-wde"/>
                             <constraint firstAttribute="height" constant="190" id="Z9f-FA-Z6f"/>
                             <constraint firstItem="gUe-dZ-RuD" firstAttribute="top" secondItem="weZ-rU-99b" secondAttribute="top" constant="15" id="at6-qf-h1s"/>
                             <constraint firstItem="stj-Fo-y62" firstAttribute="top" secondItem="gUe-dZ-RuD" secondAttribute="bottom" constant="15" id="fJL-RQ-kLl"/>
                             <constraint firstItem="stj-Fo-y62" firstAttribute="centerX" secondItem="weZ-rU-99b" secondAttribute="centerX" id="kau-kQ-oID"/>
+                            <constraint firstItem="stj-Fo-y62" firstAttribute="leading" secondItem="weZ-rU-99b" secondAttribute="leading" constant="5" id="kzT-gB-fNA"/>
                         </constraints>
                     </view>
                 </subviews>

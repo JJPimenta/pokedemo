@@ -11,6 +11,7 @@ public class PokemonListViewModel {
     
     var cellModels = [PokemonCellViewModel]()
     var results = [Results]()
+    var next: String = ""
     var isFetching = false
     
     let baseURL = "https://pokeapi.co/api/v2/pokemon?limit=100&offset="
@@ -25,8 +26,8 @@ public class PokemonListViewModel {
         URLSession.shared.dataTask(with: URL(string: url)!) { (data, response, error) in
             
             guard let data = data, error == nil else {
-                print("Error when obtaing inicial pokemon list")
                 completion(.failure(error!))
+                debugPrint(error!)
                 return
             }
             
@@ -34,13 +35,14 @@ public class PokemonListViewModel {
             do {
                 result = try JSONDecoder().decode(Response.self, from: data)
             } catch {
-                print("Failed to decode object with error: \(error.localizedDescription)")
+                debugPrint(error)
             }
             
             guard let decodedResult = result else {
                 return
             }
             
+            self.next = decodedResult.next ?? ""
             self.results.append(contentsOf: decodedResult.results)
             self.createCellViewModels(newResults: decodedResult.results, completion: { () in
                 //Fetching just ended, reset to false
@@ -68,7 +70,7 @@ public class PokemonListViewModel {
                     serviceGroup.leave()
                     break
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    debugPrint(error)
                     serviceGroup.leave()
                     break
                 }
