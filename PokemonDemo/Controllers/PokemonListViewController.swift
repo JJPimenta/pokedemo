@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  PokemonListViewController.swift
 //  PokemonDemo
 //
 //  Created by itsector on 28/01/2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class PokemonListViewController: UIViewController {
 
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var loadingView: UIView!
@@ -48,7 +48,7 @@ class ViewController: UIViewController {
 }
 
 // MARK: UICollectionView Extensions
-extension ViewController: UICollectionViewDelegate {
+extension PokemonListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "PokemonDetailViewController") as! PokemonDetailViewController
         detailsViewController.model = self.pokemonListViewModel.cellModels[indexPath.row]
@@ -56,7 +56,7 @@ extension ViewController: UICollectionViewDelegate {
     }
 }
 
-extension ViewController: UICollectionViewDataSource {
+extension PokemonListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return pokemonListViewModel.results.count
     }
@@ -84,7 +84,7 @@ extension ViewController: UICollectionViewDataSource {
 }
 
 // MARK: Utility Methods Extension
-extension ViewController {
+extension PokemonListViewController {
     
     func showActivityView() {
         self.loadingView.alpha = 0.5
