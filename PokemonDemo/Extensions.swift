@@ -98,4 +98,12 @@ extension UIFont {
     class func detailContentStyle() -> UIFont {
         return UIFont.systemFont(ofSize: 17.0, weight: .medium)
     }
+    
+    class func detailPokemonNameStyle() -> UIFont {
+        return UIFont.systemFont(ofSize: 28.0, weight: .heavy)
+    }
+    
+    class func detailPokemonIdStyle() -> UIFont {
+        return UIFont.systemFont(ofSize: 19.0, weight: .bold)
+    }
 }

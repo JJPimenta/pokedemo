@@ -110,6 +110,9 @@
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qek-Pe-gg4" userLabel="Close Button">
                                                 <rect key="frame" x="384" y="15" width="15" height="15"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="detailCloseButton">
+                                                    <bool key="isElement" value="NO"/>
+                                                </accessibility>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="15" id="CXe-yW-Xhl"/>
                                                     <constraint firstAttribute="width" constant="15" id="Nmr-94-Pnm"/>
