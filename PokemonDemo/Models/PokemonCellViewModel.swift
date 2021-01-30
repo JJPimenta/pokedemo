@@ -8,13 +8,32 @@
 import Foundation
 import UIKit
 
-public class PokemonCellViewModel {
+protocol CellViewModelProtocol {
+    func downloadPokemonInformation(completion: @escaping (Result<Pokemon,Error>) -> Void)
+    var success: Bool { get set }
+    var error: Error? { get set }
+}
+
+public class PokemonCellViewModel: CellViewModelProtocol {
+    
+    required init(id: String, name: String, height: Int, weight: Int, image: UIImage, types: [Types]) {
+        self.pokemonId = id
+        self.pokemonName = name
+        self.pokemonHeight = height
+        self.pokemonWeight = weight
+        self.pokemonImage = image
+        self.pokemonTypes = types
+    }
+    
     var pokemonId: String = ""
     var pokemonName: String = ""
     var pokemonHeight: Int = 0
     var pokemonWeight: Int = 0
     var pokemonImage: UIImage?
     var pokemonTypes: [Types] = []
+    
+    var success: Bool = false
+    var error: Error? = nil
     
     init(with id: String) {
         self.pokemonId = id
