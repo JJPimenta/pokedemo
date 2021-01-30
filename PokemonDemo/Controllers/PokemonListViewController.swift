@@ -13,7 +13,6 @@ class PokemonListViewController: UIViewController {
     @IBOutlet var loadingView: UIView!
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     private var pokemonListViewModel = PokemonListViewModel()
-    private var pokemonCellViewModel: PokemonCellViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,9 +49,9 @@ class PokemonListViewController: UIViewController {
 // MARK: UICollectionView Extensions
 extension PokemonListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "PokemonDetailViewController") as! PokemonDetailViewController
-        detailsViewController.model = self.pokemonListViewModel.cellModels[indexPath.row]
-        self.present(detailsViewController, animated: true, completion: nil)
+        let model =  self.pokemonListViewModel.cellModels[indexPath.row]
+        let vc = PokemonDetailViewController().initDetailViewController(with: model)
+        self.present(vc, animated: true, completion: nil)
     }
 }
 

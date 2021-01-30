@@ -35,11 +35,18 @@ class PokemonDetailViewController: UIViewController {
         setupUI()
     }
     
+    func initDetailViewController(with model: PokemonCellViewModel) -> PokemonDetailViewController {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let newDetail = storyboard.instantiateViewController(identifier: String(describing: PokemonDetailViewController.self)) as? PokemonDetailViewController
+        newDetail?.model = model
+        return newDetail!
+    }
+    
     func setupUI() {
         
         //Set the UI with the pokemon information
         nameLabel.text = model?.pokemonName
-        nameLabel.font = .detailTitleStyle()
+        nameLabel.font = .detailPokemonNameStyle()
         
         imgView.image = model?.pokemonImage
         
