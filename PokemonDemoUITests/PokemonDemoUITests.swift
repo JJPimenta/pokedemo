@@ -8,42 +8,37 @@
 import XCTest
 
 class PokemonDemoUITests: XCTestCase {
-
-    override func setUpWithError() throws {
-        continueAfterFailure = false
-    }
-
-    func testExample() throws {
-        let app = XCUIApplication()
-        app.launch()
-    }
     
-    func testPokemonDetailCloseButton() {
-        let app = XCUIApplication()
+    let app = XCUIApplication()
+
+    override func setUp() {
+        continueAfterFailure = false
         app.launch()
+    }
+
+    func testPokemonDetailCloseButton() {
+
         app.collectionViews.children(matching: .cell).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.tap()
         app.scrollViews.otherElements.buttons["detailCloseButton"].tap()
         
         let keyWindow = UIApplication.shared.windows.first { $0.isKeyWindow }
         
         if var topController = keyWindow?.rootViewController {
-          while let presentedViewController = topController.presentedViewController {
-            topController = presentedViewController
-          }
+            while let presentedViewController = topController.presentedViewController {
+                topController = presentedViewController
+            }
         XCTAssertTrue(topController is PokemonListViewController)
         }
     }
     
     func testPokemonListPush() {
-        let app = XCUIApplication()
-        app.launch()
         XCUIApplication().collectionViews.children(matching: .cell).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.tap()
         
         let keyWindow = UIApplication.shared.windows.first { $0.isKeyWindow }
         if var topController = keyWindow?.rootViewController {
-          while let presentedViewController = topController.presentedViewController {
-            topController = presentedViewController
-          }
+            while let presentedViewController = topController.presentedViewController {
+                topController = presentedViewController
+            }
         XCTAssertTrue(topController is PokemonDetailViewController)
         }
     }
