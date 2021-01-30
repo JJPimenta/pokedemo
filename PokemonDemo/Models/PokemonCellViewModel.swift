@@ -11,6 +11,8 @@ import UIKit
 public class PokemonCellViewModel {
     var pokemonId: String = ""
     var pokemonName: String = ""
+    var pokemonHeight: Int = 0
+    var pokemonWeight: Int = 0
     var pokemonImage: UIImage?
     var pokemonTypes: [Types] = []
     
@@ -57,6 +59,8 @@ public class PokemonCellViewModel {
             
             self.pokemonId = String(decodedResult.id)
             self.pokemonName = decodedResult.name.capitalized
+            self.pokemonHeight = decodedResult.height
+            self.pokemonWeight = decodedResult.weight
             self.pokemonTypes = decodedResult.types
             
             guard let imgDefault = decodedResult.sprites.frontDefault else {

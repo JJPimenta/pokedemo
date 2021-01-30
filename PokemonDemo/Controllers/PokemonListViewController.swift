@@ -85,7 +85,6 @@ extension PokemonListViewController: UICollectionViewDataSource {
 
 // MARK: Utility Methods Extension
 extension PokemonListViewController {
-    
     func showActivityView() {
         self.loadingView.alpha = 0.5
         self.loadingView.isHidden = false
