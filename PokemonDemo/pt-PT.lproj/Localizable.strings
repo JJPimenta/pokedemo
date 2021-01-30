@@ -6,5 +6,7 @@
   
 */
 
-"height" = "Altura";
-"weight" = "Peso";
+"height" = "Altura:";
+"weight" = "Peso:";
+"type" = "Tipo:";
+"types" = "Tipos:";
