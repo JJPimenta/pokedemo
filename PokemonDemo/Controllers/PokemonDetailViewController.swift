@@ -27,15 +27,23 @@ class PokemonDetailViewController: UIViewController {
     func setupUI() {
         
         //Set the UI with the pokemon information
-        imgView.image = model?.pokemonImage
-        idLabel.text = ("#\(model?.pokemonId ?? "0")")
         nameLabel.text = model?.pokemonName
+        nameLabel.font = UIFont.systemFont(ofSize: nameLabel.font.pointSize, weight: .heavy)
+        
+        imgView.image = model?.pokemonImage
+        
+        idLabel.text = ("#\(model?.pokemonId ?? "0")")
+        idLabel.font = UIFont.systemFont(ofSize: idLabel.font.pointSize, weight: .bold)
+        
+        typesTitleLabel.text = NSLocalizedString("height", comment: "") + ":"
+        typesTitleLabel.font = UIFont.systemFont(ofSize: typesTitleLabel.font.pointSize, weight: .semibold)
         
         var typesString: [String] = []
         for types in model!.pokemonTypes {
             typesString.append(types.type.name.capitalized)
         }
         typesTextLabel.text = typesString.joined(separator: ", ")
+        typesTextLabel.font = UIFont.systemFont(ofSize: typesTextLabel.font.pointSize, weight: .regular)
     }
     
     override func viewDidLayoutSubviews() {

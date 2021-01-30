@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  PokemonDemo
+
+  Created by itsector on 30/01/2021.
+  
+*/
+
+"height" = "Altura";
+"weight" = "Peso";

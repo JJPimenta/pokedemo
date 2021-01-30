@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D9852C425C5611D001D8C74 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2D9852C625C5611D001D8C74 /* Localizable.strings */; };
 		2DDEEABA25C2E3EE00A8439B /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDEEAB925C2E3EE00A8439B /* Pokemon.swift */; };
 		2DDEEAC125C2E98200A8439B /* PokemonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDEEABF25C2E98200A8439B /* PokemonCollectionViewCell.swift */; };
 		2DDEEAC225C2E98200A8439B /* PokemonCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DDEEAC025C2E98200A8439B /* PokemonCollectionViewCell.xib */; };
@@ -42,6 +43,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D9852C525C5611D001D8C74 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2D9852CA25C56134001D8C74 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Main.strings"; sourceTree = "<group>"; };
+		2D9852CE25C56140001D8C74 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		2DDEEAB925C2E3EE00A8439B /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		2DDEEABF25C2E98200A8439B /* PokemonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCollectionViewCell.swift; sourceTree = "<group>"; };
 		2DDEEAC025C2E98200A8439B /* PokemonCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PokemonCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -143,6 +147,7 @@
 				2DF7B97025C2CE12008F64D0 /* Info.plist */,
 				2DDEEABF25C2E98200A8439B /* PokemonCollectionViewCell.swift */,
 				2DDEEAC025C2E98200A8439B /* PokemonCollectionViewCell.xib */,
+				2D9852C625C5611D001D8C74 /* Localizable.strings */,
 			);
 			path = PokemonDemo;
 			sourceTree = "<group>";
@@ -250,6 +255,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"pt-PT",
 			);
 			mainGroup = 2DF7B95625C2CE0F008F64D0;
 			productRefGroup = 2DF7B96025C2CE10008F64D0 /* Products */;
@@ -268,6 +274,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D9852C425C5611D001D8C74 /* Localizable.strings in Resources */,
 				2DF7B96F25C2CE12008F64D0 /* LaunchScreen.storyboard in Resources */,
 				2DF7B96C25C2CE12008F64D0 /* Assets.xcassets in Resources */,
 				2DDEEAC225C2E98200A8439B /* PokemonCollectionViewCell.xib in Resources */,
@@ -340,10 +347,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		2D9852C625C5611D001D8C74 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2D9852C525C5611D001D8C74 /* en */,
+				2D9852CE25C56140001D8C74 /* pt-PT */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		2DF7B96825C2CE10008F64D0 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				2DF7B96925C2CE10008F64D0 /* Base */,
+				2D9852CA25C56134001D8C74 /* pt-PT */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -363,6 +380,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -424,6 +442,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

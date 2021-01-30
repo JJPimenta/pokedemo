@@ -53,7 +53,6 @@ public class PokemonListViewModel {
         }.resume()
     }
     
-    
     func createCellViewModels(newResults: [Results], completion: @escaping () -> Void) {
         
         let serviceGroup = DispatchGroup()
