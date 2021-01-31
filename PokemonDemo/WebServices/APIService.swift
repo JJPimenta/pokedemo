@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SDWebImage
 
 protocol APIServiceProtocol {
     func fetchPokemons(with offset: Int, completion:  @escaping (Result<Response,Error>) -> Void)
@@ -79,21 +80,16 @@ public class APIService: APIServiceProtocol {
         }.resume()
     }
 
-    func getPokemonImage(from urlString: String, completion: @escaping (Result<UIImage,Error>) -> Void) {
+    func getPokemonImage(from urlString: String, imageView: UIImageView, completion: @escaping (Result<UIImage,Error>) -> Void) {
         let pokemonURL = URL(string: urlString)
-        URLSession.shared.dataTask(with: pokemonURL!) { (data, response, error) in
-            if error != nil {
-                debugPrint(error!)
-                completion(.failure(error!))
+        imageView.sd_setImage(with: pokemonURL) { (image, error, nil, url) in
+            if let error = error {
+                debugPrint(error)
+                completion(.failure(error))
             } else {
-                if (response as? HTTPURLResponse) != nil {
-                    if let imageData = data {
-                        let image = UIImage(data: imageData)
-                        completion(.success(image!))
-                    }
-                }
+                completion(.success(image!))
             }
-        }.resume()
+        }
     }
 }
 

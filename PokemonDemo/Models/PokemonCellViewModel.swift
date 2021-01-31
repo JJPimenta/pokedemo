@@ -17,6 +17,7 @@ public class PokemonCellViewModel {
     var pokemonImage: UIImage?
     var pokemonTypes: [Types] = []
     let serviceAPI = APIService()
+    let pokemonImageView = UIImageView()
     
     required init(id: String, name: String, height: Int, weight: Int, image: UIImage, types: [Types]) {
         self.pokemonId = id
@@ -52,7 +53,7 @@ public class PokemonCellViewModel {
                     return
                 }
                     
-                self.serviceAPI.getPokemonImage(from: frontDefault) { (result) in
+                self.serviceAPI.getPokemonImage(from: frontDefault, imageView: self.pokemonImageView) { (result) in
                     switch result {
                     case .failure:
                         self.pokemonImage = UIImage(named: "MissingNo.")

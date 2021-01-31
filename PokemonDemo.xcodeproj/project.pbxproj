@@ -42,6 +42,7 @@
 		2DF7B96F25C2CE12008F64D0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DF7B96D25C2CE12008F64D0 /* LaunchScreen.storyboard */; };
 		2DF7B97A25C2CE12008F64D0 /* PokemonDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF7B97925C2CE12008F64D0 /* PokemonDemoTests.swift */; };
 		2DF7B98525C2CE12008F64D0 /* PokemonDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF7B98425C2CE12008F64D0 /* PokemonDemoUITests.swift */; };
+		974C59DB0FCBEB637F5EB717 /* libPods-PokemonDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DFFBA6DAFEAEDDD3D5434AA /* libPods-PokemonDemo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0DFFBA6DAFEAEDDD3D5434AA /* libPods-PokemonDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PokemonDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D9852C525C5611D001D8C74 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2D9852CA25C56134001D8C74 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Main.strings"; sourceTree = "<group>"; };
 		2D9852CE25C56140001D8C74 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -88,6 +90,8 @@
 		2DF7B98025C2CE12008F64D0 /* PokemonDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokemonDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DF7B98425C2CE12008F64D0 /* PokemonDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDemoUITests.swift; sourceTree = "<group>"; };
 		2DF7B98625C2CE12008F64D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		497A178723ABC142CDF4ADAF /* Pods-PokemonDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokemonDemo.release.xcconfig"; path = "Target Support Files/Pods-PokemonDemo/Pods-PokemonDemo.release.xcconfig"; sourceTree = "<group>"; };
+		79725A6E990D6659F0543C69 /* Pods-PokemonDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokemonDemo.debug.xcconfig"; path = "Target Support Files/Pods-PokemonDemo/Pods-PokemonDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				974C59DB0FCBEB637F5EB717 /* libPods-PokemonDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,6 +155,8 @@
 				2DF7B97825C2CE12008F64D0 /* PokemonDemoTests */,
 				2DF7B98325C2CE12008F64D0 /* PokemonDemoUITests */,
 				2DF7B96025C2CE10008F64D0 /* Products */,
+				3D424FC369E14BA32A086761 /* Pods */,
+				84469865444CEA46298BF8E2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -201,6 +208,24 @@
 			path = PokemonDemoUITests;
 			sourceTree = "<group>";
 		};
+		3D424FC369E14BA32A086761 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				79725A6E990D6659F0543C69 /* Pods-PokemonDemo.debug.xcconfig */,
+				497A178723ABC142CDF4ADAF /* Pods-PokemonDemo.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		84469865444CEA46298BF8E2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0DFFBA6DAFEAEDDD3D5434AA /* libPods-PokemonDemo.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -208,6 +233,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2DF7B98925C2CE12008F64D0 /* Build configuration list for PBXNativeTarget "PokemonDemo" */;
 			buildPhases = (
+				386BDE7CD4CC2C225A0B9ABB /* [CP] Check Pods Manifest.lock */,
 				2DF7B95B25C2CE10008F64D0 /* Sources */,
 				2DF7B95C25C2CE10008F64D0 /* Frameworks */,
 				2DF7B95D25C2CE10008F64D0 /* Resources */,
@@ -328,6 +354,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		386BDE7CD4CC2C225A0B9ABB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PokemonDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2DF7B95B25C2CE10008F64D0 /* Sources */ = {
@@ -546,6 +597,7 @@
 		};
 		2DF7B98A25C2CE12008F64D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79725A6E990D6659F0543C69 /* Pods-PokemonDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -565,6 +617,7 @@
 		};
 		2DF7B98B25C2CE12008F64D0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 497A178723ABC142CDF4ADAF /* Pods-PokemonDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
