@@ -115,14 +115,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D98534525C6BB5B001D8C74 /* WebServices */ = {
+			isa = PBXGroup;
+			children = (
+				2DDEEAD725C305F000A8439B /* APIService.swift */,
+				2D98533C25C6270E001D8C74 /* MockAPIService.swift */,
+			);
+			path = WebServices;
+			sourceTree = "<group>";
+		};
 		2DDEEAC625C2F99200A8439B /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				2DDEEAB925C2E3EE00A8439B /* Pokemon.swift */,
 				2DDEEAC725C2FA4100A8439B /* PokemonCellViewModel.swift */,
 				2DDEEAD225C3010800A8439B /* PokemonListViewModel.swift */,
-				2DDEEAD725C305F000A8439B /* APIService.swift */,
-				2D98533C25C6270E001D8C74 /* MockAPIService.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -159,6 +166,7 @@
 		2DF7B96125C2CE10008F64D0 /* PokemonDemo */ = {
 			isa = PBXGroup;
 			children = (
+				2D98534525C6BB5B001D8C74 /* WebServices */,
 				2DDEEADF25C37F1D00A8439B /* Controllers */,
 				2DDEEAC625C2F99200A8439B /* Models */,
 				2DF7B96225C2CE10008F64D0 /* AppDelegate.swift */,
