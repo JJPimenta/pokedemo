@@ -91,6 +91,10 @@ extension UIColor {
 }
 
 extension UIFont {
+    class func listPokemonNameStyle() -> UIFont {
+        return UIFont.systemFont(ofSize: 17.0, weight: .medium)
+    }
+    
     class func detailTitleStyle() -> UIFont {
         return UIFont.systemFont(ofSize: 17.0, weight: .bold)
     }

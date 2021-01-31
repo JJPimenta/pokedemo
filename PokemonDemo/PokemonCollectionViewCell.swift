@@ -34,6 +34,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         self.layer.masksToBounds = false
         self.layer.shadowPath = UIBezierPath(roundedRect:self.bounds, cornerRadius:self.contentView.layer.cornerRadius).cgPath
         
+        pokemonNameLabel.font = .listPokemonNameStyle()
     }
     
     func configureCell(model: PokemonCellViewModel) {
