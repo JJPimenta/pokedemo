@@ -9,48 +9,30 @@ import Foundation
 
 public class PokemonListViewModel {
     
-    var cellModels = [PokemonCellViewModel]()
+    private var serviceAPI = APIService()
     var results = [Results]()
-    var next: String = ""
-    var isFetching = false
+    var cellModels = [PokemonCellViewModel]()
+    var hasNext: Bool = true
     
-    let baseURL = "https://pokeapi.co/api/v2/pokemon?limit=100&offset="
-    
-    func fetchPokemons(with offset: Int, completion:  @escaping (Result<Response,Error>) -> Void) -> Void {
-        
-        //Starting new fetch request. Set control boolean to true to stop multiple requests
-        self.isFetching = true
-                
-        let url = baseURL + "\(offset)"
-        
-        URLSession.shared.dataTask(with: URL(string: url)!) { (data, response, error) in
-            
-            guard let data = data, error == nil else {
-                completion(.failure(error!))
-                debugPrint(error!)
-                return
-            }
-            
-            var result: Response?
-            do {
-                result = try JSONDecoder().decode(Response.self, from: data)
-            } catch {
+    func fetchPokemons(completion: @escaping () -> Void) {
+        serviceAPI.fetchPokemons(with: self.results.count) { (results) in
+            switch results {
+            case .failure(let error):
                 debugPrint(error)
+                completion()
+                break
+                
+            case .success(let response):
+                if (response.next ?? "").isEmpty {
+                    self.hasNext = false
+                }
+                self.results.append(contentsOf: response.results)
+                self.createCellViewModels(newResults: response.results, completion: { () in
+                    completion()
+                })
+                break
             }
-            
-            guard let decodedResult = result else {
-                return
-            }
-            
-            self.next = decodedResult.next ?? ""
-            self.results.append(contentsOf: decodedResult.results)
-            self.createCellViewModels(newResults: decodedResult.results, completion: { () in
-                //Fetching just ended, reset to false
-                self.isFetching = false
-                completion(.success(decodedResult))
-            })
-            
-        }.resume()
+        }
     }
     
     func createCellViewModels(newResults: [Results], completion: @escaping () -> Void) {

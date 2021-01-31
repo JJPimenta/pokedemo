@@ -12,6 +12,8 @@ class PokemonListViewController: UIViewController {
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var loadingView: UIView!
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
+    
+    private var isServiceAPIFetching: Bool = false
     private var pokemonListViewModel = PokemonListViewModel()
     
     override func viewDidLoad() {
@@ -28,19 +30,10 @@ class PokemonListViewController: UIViewController {
     
     func fetchPokemons() {
         self.showActivityView()
-        let index = self.pokemonListViewModel.results.count
-        pokemonListViewModel.fetchPokemons(with: index) { (result) in
-            switch result {
-            case .failure(let error):
-                debugPrint(error)
-                self.hideActivityView()
-                break
-            case .success:
-                DispatchQueue.main.async {
-                    self.hideActivityView()
-                    self.collectionView.reloadData()
-                }
-                break
+        pokemonListViewModel.fetchPokemons {
+            self.hideActivityView()
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
             }
         }
     }
@@ -72,11 +65,11 @@ extension PokemonListViewController: UICollectionViewDataSource {
         
         let lastRowIndex = collectionView.numberOfItems(inSection: 0) - 1
         
-        if self.pokemonListViewModel.next.isEmpty {
+        if !self.pokemonListViewModel.hasNext {
             return
         }
         
-        if indexPath.row == lastRowIndex && !self.pokemonListViewModel.isFetching {
+        if indexPath.row == lastRowIndex && !self.isServiceAPIFetching {
             fetchPokemons()
         }
     }
@@ -85,6 +78,9 @@ extension PokemonListViewController: UICollectionViewDataSource {
 // MARK: Utility Methods Extension
 extension PokemonListViewController {
     func showActivityView() {
+        
+        self.isServiceAPIFetching = true
+        
         self.loadingView.alpha = 0.5
         self.loadingView.isHidden = false
         self.activityIndicator.isHidden = false
@@ -92,11 +88,11 @@ extension PokemonListViewController {
     }
     
     func hideActivityView() {
-        self.activityIndicator.startAnimating()
+        self.activityIndicator.stopAnimating()
         UIView.animate(withDuration: 0.2, animations: {
             self.loadingView!.alpha = 0.0
             }, completion: { (finished: Bool) in
-                
+                self.isServiceAPIFetching = false
         })
     }
 }
