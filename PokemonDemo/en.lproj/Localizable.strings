@@ -15,6 +15,8 @@
 "frontImage" = "Front";
 "backImage" = "Back";
 "height" = "Height:";
+"noheight" = "No available data";
 "weight" = "Weight:";
+"noheight" = "No available data";
 "type" = "Type:";
 "types" = "Types:";

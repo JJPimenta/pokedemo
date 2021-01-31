@@ -17,8 +17,11 @@ class PokemonDemoUITests: XCTestCase {
     }
 
     func testPokemonDetailCloseButton() {
+        
+        //Since serviceAPI calls are being made, the loading time may vary. For that reason, a sleep(15) was added just ensure that the cellMainView is clickable
+        
         let app = XCUIApplication()
-        sleep(20)
+        sleep(15)
         let cell = app.collectionViews.children(matching: .cell).element(boundBy: 0).otherElements["cellMainView"]
         cell.tap()
         
@@ -37,9 +40,11 @@ class PokemonDemoUITests: XCTestCase {
     
     func testPokemonSearch() {
         
+        //Since serviceAPI calls are being made, the loading time may vary. For that reason, a sleep(15) was added just ensure that the search bar is clickable
+        
         let app = XCUIApplication()
         let introduzaONomeDoPokMonSearchField = app.searchFields.element(boundBy: 0)
-        sleep(10)
+        sleep(15)
         introduzaONomeDoPokMonSearchField.tap()
         
         let pKey = app.keys["p"]

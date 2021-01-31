@@ -10,11 +10,19 @@ import UIKit
 
 public class PokemonListViewModel {
     
+    //serviceAPI is a APIServiceProtocol for UnitTest purposes
     private var serviceAPI: APIServiceProtocol
+    
+    ///Used to save all Pokemon that are fetched from the fetchPokemons method
     var results = [Results]()
+    
+    ///Used to save all PokemonCellViewModels instances to be later used in the PokemonListViewController cellForRow:
     var cellModels = [PokemonCellViewModel]()
+    
+    ///Boolean used to check if there is another page to be fetched or not
     var hasNext: Bool = true
     
+    //Variables used for UnitTest purposes
     var success: Bool = false
     var error: Error?
     
@@ -22,6 +30,7 @@ public class PokemonListViewModel {
         self.serviceAPI = serviceAPI
     }
     
+    ///Ask APIService to fetch the next Pokemon list
     func fetchPokemons(completion: @escaping () -> Void) {
         serviceAPI.fetchPokemons(with: self.results.count) { (results) in
             switch results {
@@ -45,8 +54,10 @@ public class PokemonListViewModel {
         }
     }
     
+    ///Used to instanciate each CellViewModel and to save them in the cellModels array.
     func createCellViewModels(newResults: [Results], completion: @escaping () -> Void) {
         
+        //Dispatch group used to sync all serviceAPI calls and to notify the fetchPokemons method that he can complete his task.
         let serviceGroup = DispatchGroup()
         
         for result in newResults {
@@ -73,8 +84,10 @@ public class PokemonListViewModel {
         }
     }
     
+    ///Method used to retrieve the specific Pokemon information that was search in PokemonListViewController
     func fetchPokemon(pokemonIdentifier: String, completion: @escaping (Result<SearchedPokemon, Error>) -> Void) {
         
+        //Before calling serviceAPI, check if we hava already downloaded the searched Pokemon information
         for cellViewModel in cellModels {
             let storedPokemon = cellViewModel.pokemon! as Pokemon
             if storedPokemon.id == Int(pokemonIdentifier) || (storedPokemon.name.lowercased() == pokemonIdentifier.lowercased()) {
@@ -86,6 +99,7 @@ public class PokemonListViewModel {
             }
         }
         
+        //No Pokemon found in cellModels so proceed to fetch
         serviceAPI.fetchPokemonDetail(pokeId: pokemonIdentifier) { (result) in
             switch result {
             case .failure(let error):
@@ -95,7 +109,6 @@ public class PokemonListViewModel {
             case .success(let pokemon):
                 
                 guard let frontDefault = pokemon.sprites.frontDefault else {
-                    //sprites was nil, so show default image
                     let image = (UIImage(named: "MissingNo.")?.pngData())!
                     let searchedPokemon = SearchedPokemon(pokemon: pokemon, image: image)
                     completion(.success(searchedPokemon))

@@ -23,6 +23,7 @@ public class PokemonCellViewModel {
         self.pokemonId = id
     }
     
+    ///Get Pokemon details
     func downloadPokemonInformation(completion: @escaping (Result<Pokemon,Error>) -> Void) {
         serviceAPI.fetchPokemonDetail(pokeId: self.pokemonId) { (result) in
             switch result {
@@ -32,14 +33,16 @@ public class PokemonCellViewModel {
                 break
             case .success(let pokemon):
                 
-                self.pokemon = Pokemon(id: pokemon.id, name: pokemon.name.capitalized, height: pokemon.height, weight: pokemon.weight , sprites: pokemon.sprites, types: pokemon.types)
+                self.pokemon = Pokemon(with: pokemon)
                 
+                //If frontDefault is nil, set the MissingNo. directly
                 guard let frontDefault = pokemon.sprites.frontDefault else {
                     self.pokemonFrontImage = UIImage(named: "MissingNo.")
                     completion(.success(pokemon))
                     return
                 }
-                    
+                
+                //Use the frontDefault URL to retrieve the pokemon image and save it
                 self.serviceAPI.getPokemonImage(from: frontDefault) { (result) in
                     switch result {
                     case .failure:

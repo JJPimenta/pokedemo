@@ -23,10 +23,12 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         
         self.mainView.backgroundColor = .clear
         
+        //Add corner radius to custom cell
         self.contentView.layer.cornerRadius = 10
         self.contentView.layer.borderColor = UIColor.clear.cgColor
         self.contentView.layer.masksToBounds = true
 
+        //Add shadow effect to custom cell
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOffset = CGSize(width: 0, height: 2.0)
         self.layer.shadowRadius = 3.0
@@ -37,6 +39,9 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         pokemonNameLabel.font = .listPokemonNameStyle()
     }
     
+    ///Used to populate each PokemonCollectionViewCell
+    ///- Parameters:
+    ///- model: the corresponding PokemonCellViewModel
     func configureCell(model: PokemonCellViewModel) {
         pokemonIdLabel.text = "#" + model.pokemonId
         pokemonNameLabel.text = model.pokemon?.name

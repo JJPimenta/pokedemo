@@ -16,22 +16,23 @@ protocol APIServiceProtocol {
 
 public class APIService: APIServiceProtocol {
     
-    var next: String = ""
-    var isFetching = false
+    let limit: String = "100"
     
+    ///Used to control if we already reached the end of the API pokemon list
+    var next: String = ""
+    
+    ///Used to retrieve the details of a specific Pokemon.
+    /// - Parameters:
+    /// - offset: The starting index from the list to called. Should be equal to PokemonListViewModel results.count
     func fetchPokemons(with offset: Int, completion:  @escaping (Result<Response,Error>) -> Void) {
         
-        //Starting new fetch request. Set control boolean to true to stop multiple requests
-        self.isFetching = true
-        
-        let url = "https://pokeapi.co/api/v2/pokemon?limit=100&offset=" + "\(offset)"
+        let url = "https://pokeapi.co/api/v2/pokemon?limit=\(limit)&offset=\(offset)"
         
         URLSession.shared.dataTask(with: URL(string: url)!) { (data, response, error) in
             
             guard let data = data, error == nil else {
                 completion(.failure(error!))
                 debugPrint(error!)
-                self.isFetching = false
                 return
             }
             
@@ -39,7 +40,6 @@ public class APIService: APIServiceProtocol {
             do {
                 result = try JSONDecoder().decode(Response.self, from: data)
             } catch {
-                self.isFetching = false
                 completion(.failure(error))
                 debugPrint(error)
             }
@@ -49,11 +49,13 @@ public class APIService: APIServiceProtocol {
             }
             
             self.next = decodedResult.next ?? ""
-            self.isFetching = false
             completion(.success(decodedResult))
         }.resume()
     }
     
+    ///Used to retrieve the details of a specific Pokemon.
+    /// - Parameters:
+    /// - pokeId: Pokemon Identifier. Can be either the name or the id.
     func fetchPokemonDetail(pokeId: String, completion:  @escaping (Result<Pokemon,Error>) -> Void) {
         
         let url = "https://pokeapi.co/api/v2/pokemon/" + pokeId
@@ -82,6 +84,9 @@ public class APIService: APIServiceProtocol {
         }.resume()
     }
 
+    ///Used to retrieve an image (either front_default or back_default) from a specific pokemon.
+    /// - Parameters:
+    /// - urlString: The url to get the image from.
     func getPokemonImage(from urlString: String, completion: @escaping (Result<UIImage,Error>) -> Void) {
         let pokemonURL = URL(string: urlString)
         URLSession.shared.dataTask(with: pokemonURL!) { (data, response, error) in
@@ -107,12 +112,22 @@ public class APIService: APIServiceProtocol {
 }
 
 public struct Response: Codable {
+    
+    ///Number of total Pokemons in the API List
     var count: Int
+    
+    ///The next url that contains the next {offset} Pokemons.
     var next: String?
+    
+    ///Pokemon Objects
     var results: [Results]
 }
 
 public struct Results: Codable {
+    
+    ///Pokemon name
     var name: String
+    
+    ///Url to get the pokemon detailed information
     var url: String
 }

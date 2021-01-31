@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2D0FF5D425C7090900A45F2D /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDEEAD725C305F000A8439B /* APIService.swift */; };
 		2D0FF5D925C7140F00A45F2D /* PokemonDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0FF5D825C7140F00A45F2D /* PokemonDetailViewModel.swift */; };
+		2D0FF5DF25C7701B00A45F2D /* PokemonDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0FF5D825C7140F00A45F2D /* PokemonDetailViewModel.swift */; };
+		2D0FF5E025C7701B00A45F2D /* PokemonDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0FF5D825C7140F00A45F2D /* PokemonDetailViewModel.swift */; };
 		2D9852C425C5611D001D8C74 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2D9852C625C5611D001D8C74 /* Localizable.strings */; };
 		2D9852DF25C57FFE001D8C74 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9852DE25C57FFE001D8C74 /* Extensions.swift */; };
 		2D9852E625C5C220001D8C74 /* PokemonListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF7B96625C2CE10008F64D0 /* PokemonListViewController.swift */; };
@@ -117,6 +119,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D0FF5DE25C7700A00A45F2D /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				2D0FF5D825C7140F00A45F2D /* PokemonDetailViewModel.swift */,
+				2DDEEAD225C3010800A8439B /* PokemonListViewModel.swift */,
+				2DDEEAC725C2FA4100A8439B /* PokemonCellViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		2D0FF5E725C7702700A45F2D /* Custom UI */ = {
+			isa = PBXGroup;
+			children = (
+				2DDEEABF25C2E98200A8439B /* PokemonCollectionViewCell.swift */,
+				2DDEEAC025C2E98200A8439B /* PokemonCollectionViewCell.xib */,
+			);
+			path = "Custom UI";
+			sourceTree = "<group>";
+		};
 		2D98534525C6BB5B001D8C74 /* WebServices */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,9 +151,6 @@
 			isa = PBXGroup;
 			children = (
 				2DDEEAB925C2E3EE00A8439B /* Pokemon.swift */,
-				2DDEEAC725C2FA4100A8439B /* PokemonCellViewModel.swift */,
-				2DDEEAD225C3010800A8439B /* PokemonListViewModel.swift */,
-				2D0FF5D825C7140F00A45F2D /* PokemonDetailViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -169,6 +187,8 @@
 		2DF7B96125C2CE10008F64D0 /* PokemonDemo */ = {
 			isa = PBXGroup;
 			children = (
+				2D0FF5E725C7702700A45F2D /* Custom UI */,
+				2D0FF5DE25C7700A00A45F2D /* View Models */,
 				2D98534525C6BB5B001D8C74 /* WebServices */,
 				2DDEEADF25C37F1D00A8439B /* Controllers */,
 				2DDEEAC625C2F99200A8439B /* Models */,
@@ -178,8 +198,6 @@
 				2DF7B96B25C2CE12008F64D0 /* Assets.xcassets */,
 				2DF7B96D25C2CE12008F64D0 /* LaunchScreen.storyboard */,
 				2DF7B97025C2CE12008F64D0 /* Info.plist */,
-				2DDEEABF25C2E98200A8439B /* PokemonCollectionViewCell.swift */,
-				2DDEEAC025C2E98200A8439B /* PokemonCollectionViewCell.xib */,
 				2D9852C625C5611D001D8C74 /* Localizable.strings */,
 				2D9852DE25C57FFE001D8C74 /* Extensions.swift */,
 			);
@@ -364,6 +382,7 @@
 				2DF7B97A25C2CE12008F64D0 /* PokemonDemoTests.swift in Sources */,
 				2D98534125C63C19001D8C74 /* MockAPIService.swift in Sources */,
 				2D98530D25C5C27E001D8C74 /* PokemonListViewModel.swift in Sources */,
+				2D0FF5DF25C7701B00A45F2D /* PokemonDetailViewModel.swift in Sources */,
 				2D9852F925C5C272001D8C74 /* PokemonDetailViewController.swift in Sources */,
 				2D98531525C5C281001D8C74 /* APIService.swift in Sources */,
 			);
@@ -376,6 +395,7 @@
 				2D9852E625C5C220001D8C74 /* PokemonListViewController.swift in Sources */,
 				2D98532925C5C29C001D8C74 /* Extensions.swift in Sources */,
 				2D98530925C5C27C001D8C74 /* PokemonCellViewModel.swift in Sources */,
+				2D0FF5E025C7701B00A45F2D /* PokemonDetailViewModel.swift in Sources */,
 				2D98532125C5C284001D8C74 /* PokemonCollectionViewCell.swift in Sources */,
 				2D9852FD25C5C277001D8C74 /* Pokemon.swift in Sources */,
 				2DF7B98525C2CE12008F64D0 /* PokemonDemoUITests.swift in Sources */,

@@ -7,6 +7,7 @@
 
 import UIKit
 
+///This class is exclusively used for the Unit Tests.
 class MockAPIService: APIServiceProtocol {
     
     var fetchResult: Result<Response, Error> = .success(Response(count: 100, next: "", results: [Results(name: "Mock Injection", url: "")]))
