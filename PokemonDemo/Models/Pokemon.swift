@@ -17,6 +17,11 @@ struct Pokemon : Codable {
     var types: [Types]
 }
 
+struct SearchedPokemon {
+    var pokemon: Pokemon
+    var image: Data
+}
+
 struct Sprites: Codable {
     let frontDefault: String?
 
