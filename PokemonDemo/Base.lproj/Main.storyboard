@@ -17,8 +17,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ivc-7i-bxq">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="7Gi-io-H7b"/>
+                                </constraints>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <navigationItem title="Title" id="udF-yM-FEf"/>
+                                </items>
+                            </navigationBar>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n0w-a3-bJc">
+                                <rect key="frame" x="0.0" y="88" width="414" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="jQ2-BH-rCC"/>
+                                </constraints>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="namePhonePad" enablesReturnKeyAutomatically="YES"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
+                            </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wMp-Tg-RFJ">
-                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <rect key="frame" x="0.0" y="143" width="414" height="753"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PK4-xM-QgG">
                                     <size key="itemSize" width="128" height="128"/>
@@ -59,15 +82,22 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <accessibility key="accessibilityConfiguration" identifier="pokemonListView"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wMp-Tg-RFJ" secondAttribute="trailing" id="BH8-cb-10p"/>
-                            <constraint firstItem="wMp-Tg-RFJ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Gqq-Wy-utu"/>
+                            <constraint firstItem="Ivc-7i-bxq" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="CQK-eG-qna"/>
+                            <constraint firstItem="wMp-Tg-RFJ" firstAttribute="top" secondItem="n0w-a3-bJc" secondAttribute="bottom" id="Gqq-Wy-utu"/>
                             <constraint firstItem="b5h-Ah-OpN" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="OFi-vb-xJI"/>
                             <constraint firstItem="wMp-Tg-RFJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="RYF-gy-Ivx"/>
                             <constraint firstAttribute="bottom" secondItem="b5h-Ah-OpN" secondAttribute="bottom" id="UWO-2e-KmO"/>
+                            <constraint firstItem="Ivc-7i-bxq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="YOD-zC-YkI"/>
+                            <constraint firstItem="n0w-a3-bJc" firstAttribute="top" secondItem="Ivc-7i-bxq" secondAttribute="bottom" id="YOa-ll-B7O"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="b5h-Ah-OpN" secondAttribute="trailing" id="aYZ-x6-qhi"/>
+                            <constraint firstItem="n0w-a3-bJc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="dFn-l1-WKL"/>
+                            <constraint firstItem="n0w-a3-bJc" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="dza-TW-77w"/>
                             <constraint firstAttribute="bottom" secondItem="wMp-Tg-RFJ" secondAttribute="bottom" id="e9A-e9-o53"/>
                             <constraint firstItem="b5h-Ah-OpN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="i2M-Nk-8P8"/>
+                            <constraint firstItem="Ivc-7i-bxq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="omR-tw-Jqv"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="sQq-e6-h4j"/>
@@ -75,6 +105,8 @@
                         <outlet property="activityIndicator" destination="SNf-y7-ywc" id="GmI-gC-TiT"/>
                         <outlet property="collectionView" destination="wMp-Tg-RFJ" id="Y1e-SK-a5N"/>
                         <outlet property="loadingView" destination="b5h-Ah-OpN" id="L8C-SU-pSo"/>
+                        <outlet property="navBar" destination="Ivc-7i-bxq" id="ax2-ph-HAn"/>
+                        <outlet property="searchBar" destination="n0w-a3-bJc" id="o73-k8-vt8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -104,6 +136,9 @@
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Q9u-j5-0zA" userLabel="Pokemon Name Label">
                                                 <rect key="frame" x="174" y="40" width="66.5" height="33.5"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <bool key="isElement" value="NO"/>
+                                                </accessibility>
                                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -111,7 +146,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qek-Pe-gg4" userLabel="Close Button">
                                                 <rect key="frame" x="384" y="15" width="15" height="15"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="detailCloseButton">
-                                                    <bool key="isElement" value="NO"/>
+                                                    <bool key="isElement" value="YES"/>
                                                 </accessibility>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="15" id="CXe-yW-Xhl"/>
@@ -124,36 +159,54 @@
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rse-hu-QDH" userLabel="Pokemon Id Label">
                                                 <rect key="frame" x="184" y="288.5" width="46" height="23"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <bool key="isElement" value="NO"/>
+                                                </accessibility>
                                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WMx-pL-hvj" userLabel="Height Title">
                                                 <rect key="frame" x="30" y="331.5" width="41.5" height="20.5"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <bool key="isElement" value="NO"/>
+                                                </accessibility>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e3P-fH-E5h" userLabel="Height">
                                                 <rect key="frame" x="81.5" y="331.5" width="41.5" height="20.5"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <bool key="isElement" value="NO"/>
+                                                </accessibility>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kRO-MK-EXn" userLabel="Weight Title">
                                                 <rect key="frame" x="30" y="367" width="41.5" height="20.5"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <bool key="isElement" value="NO"/>
+                                                </accessibility>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GGx-xf-xP3" userLabel="Weight">
                                                 <rect key="frame" x="81.5" y="367" width="41.5" height="20.5"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <bool key="isElement" value="NO"/>
+                                                </accessibility>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ieM-yR-7nf" userLabel="Types Title">
                                                 <rect key="frame" x="30" y="402.5" width="41.5" height="20.5"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <bool key="isElement" value="NO"/>
+                                                </accessibility>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -167,6 +220,9 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZF3-5i-Kdn" userLabel="First Type">
                                                                 <rect key="frame" x="7" y="0.0" width="92" height="25"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <accessibility key="accessibilityConfiguration">
+                                                                    <bool key="isElement" value="NO"/>
+                                                                </accessibility>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="25" id="sXg-xz-gNG"/>
                                                                 </constraints>
@@ -189,6 +245,9 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XU2-os-1Re" userLabel="Second Type">
                                                                 <rect key="frame" x="7" y="0.0" width="42" height="25"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <accessibility key="accessibilityConfiguration">
+                                                                    <bool key="isElement" value="NO"/>
+                                                                </accessibility>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="25" id="8Qs-os-GpX"/>
                                                                 </constraints>
@@ -218,6 +277,7 @@
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="detailContentView"/>
                                         <constraints>
                                             <constraint firstItem="Q9u-j5-0zA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="NOI-Xf-5pT" secondAttribute="leading" constant="10" id="0ET-je-nQ6"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="aV1-zn-mqe" secondAttribute="trailing" constant="10" id="26S-OU-NF8"/>
@@ -261,6 +321,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Fl2-hP-Arh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <accessibility key="accessibilityConfiguration" identifier="detailVCView"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="jpe-Lh-KZw" secondAttribute="trailing" id="7ji-XK-gW2"/>
                             <constraint firstItem="jpe-Lh-KZw" firstAttribute="leading" secondItem="3eX-fJ-0mw" secondAttribute="leading" id="CG5-XM-4lJ"/>
