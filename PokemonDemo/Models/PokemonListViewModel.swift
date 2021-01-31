@@ -9,20 +9,29 @@ import Foundation
 
 public class PokemonListViewModel {
     
-    private var serviceAPI = APIService()
+    private var serviceAPI: APIServiceProtocol
     var results = [Results]()
     var cellModels = [PokemonCellViewModel]()
     var hasNext: Bool = true
+    
+    var success: Bool = false
+    var error: Error?
+    
+    init (serviceAPI: APIServiceProtocol = APIService()) {
+            self.serviceAPI = serviceAPI
+    }
     
     func fetchPokemons(completion: @escaping () -> Void) {
         serviceAPI.fetchPokemons(with: self.results.count) { (results) in
             switch results {
             case .failure(let error):
+                self.success = false
+                self.error = error
                 debugPrint(error)
                 completion()
                 break
-                
             case .success(let response):
+                self.success = true
                 if (response.next ?? "").isEmpty {
                     self.hasNext = false
                 }

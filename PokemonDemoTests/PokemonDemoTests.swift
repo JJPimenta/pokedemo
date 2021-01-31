@@ -10,24 +10,28 @@ import XCTest
 
 class PokemonDemoTests: XCTestCase {
 
+    var mockService = MockAPIService()
+    var pokemonListViewModel: PokemonListViewModel!
+    
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        pokemonListViewModel = PokemonListViewModel(serviceAPI: mockService)
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    func testIsFetching() {
+        pokemonListViewModel.fetchPokemons { }
+        XCTAssertTrue(mockService.isFetching)
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    func testFetchSuccessful() {
+        mockService.fetchResult = .success(Response(count: 1, next: "", results: [Results(name: "Mock Injection", url: "")]))
+        pokemonListViewModel.fetchPokemons { }
+        XCTAssertTrue(pokemonListViewModel.success)
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func testFetchFailed() {
+        mockService.fetchResult = .failure(NSError(domain: "", code: -1, userInfo: nil))
+        pokemonListViewModel.fetchPokemons { }
+        XCTAssertNotNil(pokemonListViewModel.error)
     }
-
 }

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol APIServiceProtocol {
-    
+    func fetchPokemons(with offset: Int, completion:  @escaping (Result<Response,Error>) -> Void)
 }
 
 public class APIService: APIServiceProtocol {
