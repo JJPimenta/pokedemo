@@ -19,7 +19,7 @@ public class PokemonListViewModel {
     var error: Error?
     
     init (serviceAPI: APIServiceProtocol = APIService()) {
-            self.serviceAPI = serviceAPI
+        self.serviceAPI = serviceAPI
     }
     
     func fetchPokemons(completion: @escaping () -> Void) {
@@ -73,8 +73,20 @@ public class PokemonListViewModel {
         }
     }
     
-    func fetchPokemon(pokemonName: String, completion: @escaping (Result<SearchedPokemon, Error>) -> Void) {
-        serviceAPI.fetchPokemonDetail(pokeId: pokemonName) { (result) in
+    func fetchPokemon(pokemonIdentifier: String, completion: @escaping (Result<SearchedPokemon, Error>) -> Void) {
+        
+        for cellViewModel in cellModels {
+            let storedPokemon = cellViewModel.pokemon! as Pokemon
+            if storedPokemon.id == Int(pokemonIdentifier) || (storedPokemon.name.lowercased() == pokemonIdentifier.lowercased()) {
+                let pokemon = storedPokemon
+                let image = (cellViewModel.pokemonFrontImage?.pngData())!
+                let searchedPokemon = SearchedPokemon(pokemon: pokemon, image: image)
+                completion(.success(searchedPokemon))
+                return
+            }
+        }
+        
+        serviceAPI.fetchPokemonDetail(pokeId: pokemonIdentifier) { (result) in
             switch result {
             case .failure(let error):
                 debugPrint(error)

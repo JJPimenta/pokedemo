@@ -8,6 +8,11 @@
 import Foundation
 import UIKit
 
+struct SearchedPokemon {
+    var pokemon: Pokemon
+    var image: Data
+}
+
 struct Pokemon : Codable {
     var id: Int
     var name: String
@@ -17,16 +22,13 @@ struct Pokemon : Codable {
     var types: [Types]
 }
 
-struct SearchedPokemon {
-    var pokemon: Pokemon
-    var image: Data
-}
-
 struct Sprites: Codable {
     let frontDefault: String?
+    let backDefault: String?
 
     enum CodingKeys: String, CodingKey {
         case frontDefault = "front_default"
+        case backDefault = "back_default"
     }
 }
 

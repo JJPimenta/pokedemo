@@ -35,6 +35,10 @@ class PokemonListViewController: UIViewController {
         searchBar.barTintColor = .white
         searchBar.backgroundColor = .white
         
+        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
+        
         fetchPokemons()
     }
     
@@ -61,12 +65,8 @@ class PokemonListViewController: UIViewController {
     }
     
     func searchPokemonSuccess(searchResult: SearchedPokemon) {
-        let model = PokemonCellViewModel(id: String(searchResult.pokemon.id),
-                                         name: searchResult.pokemon.name.capitalized,
-                                         height: searchResult.pokemon.height,
-                                         weight: searchResult.pokemon.weight,
-                                         image: UIImage(data: searchResult.image)!,
-                                         types: searchResult.pokemon.types) as PokemonCellViewModel
+        let model = PokemonCellViewModel(with: searchResult.pokemon)
+        model.pokemonFrontImage = UIImage(data: searchResult.image)
         DispatchQueue.main.async {
             self.hideActivityView()
             let vc = PokemonDetailViewController().initDetailViewController(with: model)
@@ -117,7 +117,7 @@ extension PokemonListViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(true)
         self.showActivityView()
-        pokemonListViewModel.fetchPokemon(pokemonName: (searchBar.text?.lowercased())!) { (result) in
+        pokemonListViewModel.fetchPokemon(pokemonIdentifier: (searchBar.text?.lowercased())!) { (result) in
             switch result {
             case .failure(let error):
                 debugPrint(error)

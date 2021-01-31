@@ -10,21 +10,13 @@ import UIKit
 
 public class PokemonCellViewModel {
     
+    var pokemon: Pokemon?
     var pokemonId: String = ""
-    var pokemonName: String = ""
-    var pokemonHeight: Int = 0
-    var pokemonWeight: Int = 0
-    var pokemonImage: UIImage?
-    var pokemonTypes: [Types] = []
+    var pokemonFrontImage: UIImage?
     let serviceAPI = APIService()
     
-    required init(id: String, name: String, height: Int, weight: Int, image: UIImage, types: [Types]) {
-        self.pokemonId = id
-        self.pokemonName = name
-        self.pokemonHeight = height
-        self.pokemonWeight = weight
-        self.pokemonImage = image
-        self.pokemonTypes = types
+    init(with pokemon: Pokemon) {
+        self.pokemon = pokemon
     }
 
     init(with id: String) {
@@ -39,14 +31,11 @@ public class PokemonCellViewModel {
                 completion(.failure(error))
                 break
             case .success(let pokemon):
-                self.pokemonId = String(pokemon.id)
-                self.pokemonName = pokemon.name.capitalized
-                self.pokemonHeight = pokemon.height
-                self.pokemonWeight = pokemon.weight
-                self.pokemonTypes = pokemon.types
-                    
+                
+                self.pokemon = Pokemon(id: pokemon.id, name: pokemon.name.capitalized, height: pokemon.height, weight: pokemon.weight , sprites: pokemon.sprites, types: pokemon.types)
+                
                 guard let frontDefault = pokemon.sprites.frontDefault else {
-                    self.pokemonImage = UIImage(named: "MissingNo.")
+                    self.pokemonFrontImage = UIImage(named: "MissingNo.")
                     completion(.success(pokemon))
                     return
                 }
@@ -54,12 +43,12 @@ public class PokemonCellViewModel {
                 self.serviceAPI.getPokemonImage(from: frontDefault) { (result) in
                     switch result {
                     case .failure:
-                        self.pokemonImage = UIImage(named: "MissingNo.")
+                        self.pokemonFrontImage = UIImage(named: "MissingNo.")
                         completion(.success(pokemon))
                         break
                         
                     case .success(let image):
-                        self.pokemonImage = image
+                        self.pokemonFrontImage = image
                         completion(.success(pokemon))
                     }
                 }

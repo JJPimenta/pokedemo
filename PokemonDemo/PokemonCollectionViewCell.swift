@@ -39,7 +39,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
     
     func configureCell(model: PokemonCellViewModel) {
         pokemonIdLabel.text = "#" + model.pokemonId
-        pokemonNameLabel.text = model.pokemonName
-        pokemonImageView.image = model.pokemonImage
+        pokemonNameLabel.text = model.pokemon?.name
+        pokemonImageView.image = model.pokemonFrontImage
     }
 }
