@@ -6,6 +6,12 @@
   
 */
 
+"pokemonList.title" = "Pokémon Demo";
+"searchBar.placeholder" = "Enter Pokémon full name";
+"pokemon.notfound.title" = "Alert";
+"pokemon.notfound.message" = "No information on the Pokémon being searched for could be obtained";
+"pokemon.notfound.button" = "Ok";
+
 "height" = "Height:";
 "weight" = "Weight:";
 "type" = "Type:";
