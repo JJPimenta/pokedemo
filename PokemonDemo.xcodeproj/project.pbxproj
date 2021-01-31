@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D0FF5D425C7090900A45F2D /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDEEAD725C305F000A8439B /* APIService.swift */; };
 		2D9852C425C5611D001D8C74 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2D9852C625C5611D001D8C74 /* Localizable.strings */; };
 		2D9852DF25C57FFE001D8C74 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9852DE25C57FFE001D8C74 /* Extensions.swift */; };
 		2D9852E625C5C220001D8C74 /* PokemonListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF7B96625C2CE10008F64D0 /* PokemonListViewController.swift */; };
@@ -20,7 +21,6 @@
 		2D98530D25C5C27E001D8C74 /* PokemonListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDEEAD225C3010800A8439B /* PokemonListViewModel.swift */; };
 		2D98531125C5C27E001D8C74 /* PokemonListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDEEAD225C3010800A8439B /* PokemonListViewModel.swift */; };
 		2D98531525C5C281001D8C74 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDEEAD725C305F000A8439B /* APIService.swift */; };
-		2D98531925C5C281001D8C74 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDEEAD725C305F000A8439B /* APIService.swift */; };
 		2D98531D25C5C284001D8C74 /* PokemonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDEEABF25C2E98200A8439B /* PokemonCollectionViewCell.swift */; };
 		2D98532125C5C284001D8C74 /* PokemonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDEEABF25C2E98200A8439B /* PokemonCollectionViewCell.swift */; };
 		2D98532525C5C29B001D8C74 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9852DE25C57FFE001D8C74 /* Extensions.swift */; };
@@ -376,8 +376,8 @@
 				2D9852FD25C5C277001D8C74 /* Pokemon.swift in Sources */,
 				2DF7B98525C2CE12008F64D0 /* PokemonDemoUITests.swift in Sources */,
 				2D98531125C5C27E001D8C74 /* PokemonListViewModel.swift in Sources */,
+				2D0FF5D425C7090900A45F2D /* APIService.swift in Sources */,
 				2D9852F125C5C23D001D8C74 /* PokemonDetailViewController.swift in Sources */,
-				2D98531925C5C281001D8C74 /* APIService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

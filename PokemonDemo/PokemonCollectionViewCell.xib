@@ -21,6 +21,7 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gUe-dZ-RuD" userLabel="Pokemon Image View">
                                 <rect key="frame" x="20" y="15" width="110" height="110"/>
+                                <accessibility key="accessibilityConfiguration" identifier="cellImageView"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="110" id="FBN-nW-iT9"/>
                                     <constraint firstAttribute="width" constant="110" id="UPg-Sf-jPa"/>
@@ -31,12 +32,14 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXY-HW-LoV" userLabel="Id Label">
                                         <rect key="frame" x="0.0" y="0.0" width="140" height="20.5"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="cellIdLabel"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="bMf-Vx-YWr" userLabel="Name Label">
                                         <rect key="frame" x="0.0" y="20.5" width="140" height="20.5"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="cellNameLabel"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -45,6 +48,7 @@
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <accessibility key="accessibilityConfiguration" identifier="cellMainView"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="stj-Fo-y62" secondAttribute="trailing" constant="5" id="7So-WQ-bBn"/>
                             <constraint firstItem="gUe-dZ-RuD" firstAttribute="centerX" secondItem="weZ-rU-99b" secondAttribute="centerX" id="9h7-EV-0Wy"/>
