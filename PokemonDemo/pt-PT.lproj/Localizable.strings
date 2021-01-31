@@ -7,7 +7,7 @@
 */
 
 "pokemonList.title" = "Demo Pokémon";
-"searchBar.placeholder" = "Introduza o nome do Pokémon";
+"searchBar.placeholder" = "Introduza o nome ou ID do Pokémon";
 "pokemon.notfound.title" = "Alerta";
 "pokemon.notfound.message" = "Não foi possível obter informação relativa ao Pokémon procurado";
 "pokemon.notfound.button" = "Ok";

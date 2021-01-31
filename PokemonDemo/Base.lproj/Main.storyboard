@@ -28,7 +28,7 @@
                                     <navigationItem title="Title" id="udF-yM-FEf"/>
                                 </items>
                             </navigationBar>
-                            <searchBar contentMode="redraw" searchBarStyle="minimal" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n0w-a3-bJc">
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="n0w-a3-bJc">
                                 <rect key="frame" x="0.0" y="88" width="414" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="jQ2-BH-rCC"/>
