@@ -10,6 +10,8 @@ import UIKit
 
 protocol APIServiceProtocol {
     func fetchPokemons(with offset: Int, completion:  @escaping (Result<Response,Error>) -> Void)
+    func fetchPokemonDetail(pokeId: String, completion:  @escaping (Result<Pokemon,Error>) -> Void)
+    func getPokemonImage(from urlString: String, completion: @escaping (Result<UIImage,Error>) -> Void)
 }
 
 public class APIService: APIServiceProtocol {
@@ -68,6 +70,7 @@ public class APIService: APIServiceProtocol {
             do {
                 result = try JSONDecoder().decode(Pokemon.self, from: data)
             } catch {
+                completion(.failure(error))
                 debugPrint(error)
             }
             

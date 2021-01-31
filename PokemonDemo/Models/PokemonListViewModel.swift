@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 public class PokemonListViewModel {
     
@@ -69,6 +70,42 @@ public class PokemonListViewModel {
         
         serviceGroup.notify(queue: DispatchQueue.main) {
             completion()
+        }
+    }
+    
+    func fetchPokemon(pokemonName: String, completion: @escaping (Result<SearchedPokemon, Error>) -> Void) {
+        serviceAPI.fetchPokemonDetail(pokeId: pokemonName) { (result) in
+            switch result {
+            case .failure(let error):
+                debugPrint(error)
+                completion(.failure(error))
+                break
+            case .success(let pokemon):
+                
+                guard let frontDefault = pokemon.sprites.frontDefault else {
+                    //sprites was nil, so show default image
+                    let image = (UIImage(named: "MissingNo.")?.pngData())!
+                    let searchedPokemon = SearchedPokemon(pokemon: pokemon, image: image)
+                    completion(.success(searchedPokemon))
+                    return
+                }
+                    
+                self.serviceAPI.getPokemonImage(from: frontDefault) { (result) in
+                    switch result {
+                    case .failure:
+                        let image = (UIImage(named: "MissingNo.")?.pngData())!
+                        let searchedPokemon = SearchedPokemon(pokemon: pokemon, image: image)
+                        completion(.success(searchedPokemon))
+                        break
+                        
+                    case .success(let image):
+                        let image = image.pngData()!
+                        let searchedPokemon = SearchedPokemon(pokemon: pokemon, image: image)
+                        completion(.success(searchedPokemon))
+                    }
+                }
+                break
+            }
         }
     }
 }

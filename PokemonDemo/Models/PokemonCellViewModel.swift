@@ -46,7 +46,6 @@ public class PokemonCellViewModel {
                 self.pokemonTypes = pokemon.types
                     
                 guard let frontDefault = pokemon.sprites.frontDefault else {
-                    //sprites was nil, so show default image
                     self.pokemonImage = UIImage(named: "MissingNo.")
                     completion(.success(pokemon))
                     return

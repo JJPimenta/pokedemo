@@ -9,6 +9,8 @@ import UIKit
 
 class PokemonListViewController: UIViewController {
 
+    @IBOutlet var navBar: UINavigationBar!
+    @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var loadingView: UIView!
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
@@ -20,10 +22,18 @@ class PokemonListViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        navBar.topItem?.title = NSLocalizedString("pokemonList.title", comment: "")
+        
         collectionView.register(UINib.init(nibName: String(describing: PokemonCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: PokemonCollectionViewCell.identifier)
         
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.keyboardDismissMode = .onDrag
+
+        searchBar.delegate = self
+        searchBar.placeholder = NSLocalizedString("searchBar.placeholder", comment: "")
+        searchBar.barTintColor = .white
+        searchBar.backgroundColor = .white
         
         fetchPokemons()
     }
@@ -35,6 +45,32 @@ class PokemonListViewController: UIViewController {
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
+        }
+    }
+    
+    func searchPokemonError() {
+        DispatchQueue.main.async {
+            self.hideActivityView()
+            let title = NSLocalizedString("pokemon.notfound.title", comment: "")
+            let message = NSLocalizedString("pokemon.notfound.message", comment: "")
+            let buttonTitle = NSLocalizedString("pokemon.notfound.button", comment: "")
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: buttonTitle, style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func searchPokemonSuccess(searchResult: SearchedPokemon) {
+        let model = PokemonCellViewModel(id: String(searchResult.pokemon.id),
+                                         name: searchResult.pokemon.name.capitalized,
+                                         height: searchResult.pokemon.height,
+                                         weight: searchResult.pokemon.weight,
+                                         image: UIImage(data: searchResult.image)!,
+                                         types: searchResult.pokemon.types) as PokemonCellViewModel
+        DispatchQueue.main.async {
+            self.hideActivityView()
+            let vc = PokemonDetailViewController().initDetailViewController(with: model)
+            self.present(vc, animated: true, completion: nil)
         }
     }
 }
@@ -74,6 +110,31 @@ extension PokemonListViewController: UICollectionViewDataSource {
         }
     }
 }
+
+// MARK: SearchBar Extension
+extension PokemonListViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+        self.showActivityView()
+        pokemonListViewModel.fetchPokemon(pokemonName: (searchBar.text?.lowercased())!) { (result) in
+            switch result {
+            case .failure(let error):
+                debugPrint(error)
+                self.searchPokemonError()
+                break
+            case .success(let searchResult):
+                self.searchPokemonSuccess(searchResult: searchResult)
+                break
+            }
+        }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+    }
+}
+
 
 // MARK: Utility Methods Extension
 extension PokemonListViewController {
