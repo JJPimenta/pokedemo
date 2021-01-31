@@ -93,7 +93,13 @@ public class APIService: APIServiceProtocol {
                     if let imageData = data {
                         let image = UIImage(data: imageData)
                         completion(.success(image!))
+                    } else {
+                        let error = NSError(domain: "", code: -1, userInfo: nil)
+                        completion(.failure(error))
                     }
+                } else {
+                    let error = NSError(domain: "", code: -1, userInfo: nil)
+                    completion(.failure(error))
                 }
             }
         }.resume()

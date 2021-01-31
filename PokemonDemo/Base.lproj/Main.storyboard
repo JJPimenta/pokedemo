@@ -134,6 +134,19 @@
                                                     <constraint firstAttribute="width" constant="240" id="N3x-pN-QSr"/>
                                                 </constraints>
                                             </imageView>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="H9Y-Su-x7B" userLabel="Image Control">
+                                                <rect key="frame" x="141.5" y="283.5" width="131" height="32"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="31" id="AAT-A9-bKO"/>
+                                                </constraints>
+                                                <segments>
+                                                    <segment title="First"/>
+                                                    <segment title="Second"/>
+                                                </segments>
+                                                <connections>
+                                                    <action selector="segmentControlClicked:" destination="6M8-qX-e2f" eventType="valueChanged" id="9o1-aY-YR8"/>
+                                                </connections>
+                                            </segmentedControl>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Q9u-j5-0zA" userLabel="Pokemon Name Label">
                                                 <rect key="frame" x="174" y="40" width="66.5" height="33.5"/>
                                                 <accessibility key="accessibilityConfiguration">
@@ -158,7 +171,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rse-hu-QDH" userLabel="Pokemon Id Label">
-                                                <rect key="frame" x="184" y="288.5" width="46" height="23"/>
+                                                <rect key="frame" x="184" y="334.5" width="46" height="23"/>
                                                 <accessibility key="accessibilityConfiguration">
                                                     <bool key="isElement" value="NO"/>
                                                 </accessibility>
@@ -167,7 +180,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WMx-pL-hvj" userLabel="Height Title">
-                                                <rect key="frame" x="30" y="331.5" width="41.5" height="20.5"/>
+                                                <rect key="frame" x="30" y="377.5" width="41.5" height="20.5"/>
                                                 <accessibility key="accessibilityConfiguration">
                                                     <bool key="isElement" value="NO"/>
                                                 </accessibility>
@@ -176,7 +189,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e3P-fH-E5h" userLabel="Height">
-                                                <rect key="frame" x="81.5" y="331.5" width="41.5" height="20.5"/>
+                                                <rect key="frame" x="81.5" y="377.5" width="41.5" height="20.5"/>
                                                 <accessibility key="accessibilityConfiguration">
                                                     <bool key="isElement" value="NO"/>
                                                 </accessibility>
@@ -185,7 +198,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kRO-MK-EXn" userLabel="Weight Title">
-                                                <rect key="frame" x="30" y="367" width="41.5" height="20.5"/>
+                                                <rect key="frame" x="30" y="413" width="41.5" height="20.5"/>
                                                 <accessibility key="accessibilityConfiguration">
                                                     <bool key="isElement" value="NO"/>
                                                 </accessibility>
@@ -194,7 +207,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GGx-xf-xP3" userLabel="Weight">
-                                                <rect key="frame" x="81.5" y="367" width="41.5" height="20.5"/>
+                                                <rect key="frame" x="81.5" y="413" width="41.5" height="20.5"/>
                                                 <accessibility key="accessibilityConfiguration">
                                                     <bool key="isElement" value="NO"/>
                                                 </accessibility>
@@ -203,7 +216,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ieM-yR-7nf" userLabel="Types Title">
-                                                <rect key="frame" x="30" y="402.5" width="41.5" height="20.5"/>
+                                                <rect key="frame" x="30" y="448.5" width="41.5" height="20.5"/>
                                                 <accessibility key="accessibilityConfiguration">
                                                     <bool key="isElement" value="NO"/>
                                                 </accessibility>
@@ -212,7 +225,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="aV1-zn-mqe">
-                                                <rect key="frame" x="81.5" y="400.5" width="167" height="25"/>
+                                                <rect key="frame" x="81.5" y="446.5" width="167" height="25"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="No4-wK-fFA" userLabel="Primary Type View">
                                                         <rect key="frame" x="0.0" y="0.0" width="106" height="25"/>
@@ -286,6 +299,7 @@
                                             <constraint firstItem="kRO-MK-EXn" firstAttribute="leading" secondItem="WMx-pL-hvj" secondAttribute="leading" id="83E-Lz-0Uc"/>
                                             <constraint firstItem="GGx-xf-xP3" firstAttribute="centerY" secondItem="kRO-MK-EXn" secondAttribute="centerY" id="8LP-J0-oW9"/>
                                             <constraint firstItem="aV1-zn-mqe" firstAttribute="centerY" secondItem="ieM-yR-7nf" secondAttribute="centerY" id="8RG-12-8hY"/>
+                                            <constraint firstItem="H9Y-Su-x7B" firstAttribute="centerX" secondItem="NOI-Xf-5pT" secondAttribute="centerX" id="A1y-LR-52M"/>
                                             <constraint firstItem="WMx-pL-hvj" firstAttribute="leading" secondItem="NOI-Xf-5pT" secondAttribute="leading" constant="30" id="FXh-av-woH"/>
                                             <constraint firstItem="ieM-yR-7nf" firstAttribute="leading" secondItem="kRO-MK-EXn" secondAttribute="leading" id="HRU-wB-vcn"/>
                                             <constraint firstItem="ieM-yR-7nf" firstAttribute="top" secondItem="kRO-MK-EXn" secondAttribute="bottom" constant="15" id="IQT-1P-9cC"/>
@@ -299,9 +313,10 @@
                                             <constraint firstItem="rse-hu-QDH" firstAttribute="centerX" secondItem="NOI-Xf-5pT" secondAttribute="centerX" id="af2-QQ-vwv"/>
                                             <constraint firstItem="qek-Pe-gg4" firstAttribute="top" secondItem="NOI-Xf-5pT" secondAttribute="top" constant="15" id="fNM-jG-gAZ"/>
                                             <constraint firstAttribute="height" constant="1000" id="foH-vl-kxC"/>
-                                            <constraint firstItem="rse-hu-QDH" firstAttribute="top" secondItem="kFj-AM-TWT" secondAttribute="bottom" constant="15" id="hdm-ft-e6t"/>
+                                            <constraint firstItem="rse-hu-QDH" firstAttribute="top" secondItem="H9Y-Su-x7B" secondAttribute="bottom" constant="20" id="hdm-ft-e6t"/>
                                             <constraint firstItem="kRO-MK-EXn" firstAttribute="top" secondItem="WMx-pL-hvj" secondAttribute="bottom" constant="15" id="lQM-e0-qSP"/>
                                             <constraint firstAttribute="trailing" secondItem="qek-Pe-gg4" secondAttribute="trailing" constant="15" id="q4g-6K-mOF"/>
+                                            <constraint firstItem="H9Y-Su-x7B" firstAttribute="top" secondItem="kFj-AM-TWT" secondAttribute="bottom" constant="10" id="qHm-7P-4Xj"/>
                                             <constraint firstItem="kFj-AM-TWT" firstAttribute="centerX" secondItem="NOI-Xf-5pT" secondAttribute="centerX" id="qqT-cf-1vI"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="e3P-fH-E5h" secondAttribute="trailing" constant="15" id="vzk-QX-kQe"/>
                                             <constraint firstItem="Q9u-j5-0zA" firstAttribute="centerX" secondItem="NOI-Xf-5pT" secondAttribute="centerX" id="xx6-bw-8dP"/>
@@ -335,6 +350,8 @@
                         <outlet property="heightLabel" destination="e3P-fH-E5h" id="yKQ-9F-qTB"/>
                         <outlet property="heightTitleLabel" destination="WMx-pL-hvj" id="VrU-1o-iKV"/>
                         <outlet property="idLabel" destination="rse-hu-QDH" id="7dh-3U-OGJ"/>
+                        <outlet property="imageSegmentControl" destination="H9Y-Su-x7B" id="gYm-ee-pcc"/>
+                        <outlet property="imageSegmentControlHeight" destination="AAT-A9-bKO" id="uQb-s4-e0j"/>
                         <outlet property="imgView" destination="kFj-AM-TWT" id="dfW-UW-O8J"/>
                         <outlet property="nameLabel" destination="Q9u-j5-0zA" id="JLv-Cl-ms1"/>
                         <outlet property="primaryTypeView" destination="No4-wK-fFA" id="puk-3O-nON"/>

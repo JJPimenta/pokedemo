@@ -14,14 +14,13 @@ class PokemonDetailViewController: UIViewController {
     
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var imgView: UIImageView!
+    @IBOutlet var imageSegmentControl: UISegmentedControl!
+    @IBOutlet var imageSegmentControlHeight: NSLayoutConstraint!
     @IBOutlet var idLabel: UILabel!
-    
     @IBOutlet var heightTitleLabel: UILabel!
     @IBOutlet var heightLabel: UILabel!
-    
     @IBOutlet var weightTitleLabel: UILabel!
     @IBOutlet var weightLabel: UILabel!
-    
     @IBOutlet var typesTitleLabel: UILabel!
     @IBOutlet var primaryTypeView: UIView!
     @IBOutlet var firstTypeLabel: UILabel!
@@ -31,7 +30,6 @@ class PokemonDetailViewController: UIViewController {
     public var model: PokemonCellViewModel?
     private let detailViewModel = PokemonDetailViewModel()
     private var backDefaultImage = UIImage()
-    private var isShowingFrontImage: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +46,8 @@ class PokemonDetailViewController: UIViewController {
     
     func fetchBackDefaultImage() {
         guard let sprites = self.model?.pokemon?.sprites else {
+            imageSegmentControl.isHidden = true
+            imageSegmentControlHeight.constant = 0
             return
         }
         
@@ -56,17 +56,19 @@ class PokemonDetailViewController: UIViewController {
                 switch result {
                 case .failure(let error):
                     debugPrint(error)
+                    DispatchQueue.main.async {
+                        self.imageSegmentControl.isHidden = true
+                        self.imageSegmentControlHeight.constant = 0
+                    }
                     break
                 case .success(let image):
                     self.backDefaultImage = image
-                    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.imageTaped))
-                    DispatchQueue.main.async {
-                        self.imgView.isUserInteractionEnabled = true
-                        self.imgView.addGestureRecognizer(tapGesture)
-                    }
                     break
                 }
             }
+        } else {
+            imageSegmentControl.isHidden = true
+            imageSegmentControlHeight.constant = 0
         }
     }
     
@@ -78,6 +80,9 @@ class PokemonDetailViewController: UIViewController {
         
         imgView.image = model?.pokemonFrontImage
         
+        imageSegmentControl.setTitle(NSLocalizedString("frontImage", comment: ""), forSegmentAt: 0)
+        imageSegmentControl.setTitle(NSLocalizedString("backImage", comment: ""), forSegmentAt: 1)
+        
         idLabel.text = ("#\(model?.pokemon?.id ?? 0)")
         idLabel.font = .detailPokemonIdStyle()
         
@@ -85,7 +90,7 @@ class PokemonDetailViewController: UIViewController {
         heightTitleLabel.font = .detailTitleStyle()
         
         //Since pokemon height is decimeters we have to divided it by 10
-        let height: Double = Double(model?.pokemon?.height ?? 1) / 10
+        let height: Double = Double(model?.pokemon?.height ?? 0) / 10
         heightLabel.text = String(height) + "m"
         heightLabel.font = .detailContentStyle()
         
@@ -93,7 +98,7 @@ class PokemonDetailViewController: UIViewController {
         weightTitleLabel.font = .detailTitleStyle()
         
         //Since pokemon weight is hectograms we have to divided it by 10
-        let weight: Double = Double(model?.pokemon?.weight ?? 1) / 10
+        let weight: Double = Double(model?.pokemon?.weight ?? 0) / 10
         weightLabel.text = String(weight) + "Kg"
         weightLabel.font = .detailContentStyle()
         
@@ -108,36 +113,43 @@ class PokemonDetailViewController: UIViewController {
         
         let pokeTypeStruct = PokeType()
         
-        let primaryType = PokeType.PokemonType(rawValue: model?.pokemon?.types.first!.type.name ?? "unknown")!
+        let primaryType = PokeType.PokemonType(rawValue: model?.pokemon?.types?.first!.type.name ?? "unknown")!
         pokeTypeStruct.setupTypes(with: primaryTypeView, label: firstTypeLabel, for: primaryType)
         
         typesTitleLabel.font = .detailTitleStyle()
         
         if model?.pokemon?.types == nil {
             typesTitleLabel.isHidden = true
-            firstTypeLabel.isHidden = true
-            secondTypeLabel.isHidden = true
-        } else if (model?.pokemon?.types.count)! < 2 {
+            primaryTypeView.isHidden = true
+            secondaryTypeView.isHidden = true
+        } else if (model?.pokemon?.types?.count)! < 2 {
             typesTitleLabel.text = NSLocalizedString("type", comment: "")
-            secondTypeLabel.isHidden = true
+            secondaryTypeView.isHidden = true
         } else {
             typesTitleLabel.text = NSLocalizedString("types", comment: "")
-            let secondaryType = PokeType.PokemonType(rawValue: model?.pokemon?.types.last!.type.name ?? "unknown")!
+            let secondaryType = PokeType.PokemonType(rawValue: model?.pokemon?.types?.last!.type.name ?? "unknown")!
             pokeTypeStruct.setupTypes(with: secondaryTypeView, label: secondTypeLabel, for: secondaryType)
         }
     }
     
-    @objc func imageTaped() {
-        if isShowingFrontImage {
-            isShowingFrontImage = !isShowingFrontImage
-            self.imgView.image = self.backDefaultImage
-            UIView.transition(with: imgView, duration: 0.3, options: .transitionFlipFromLeft, animations: nil, completion: nil)
-        } else {
-            isShowingFrontImage = !isShowingFrontImage
+    @IBAction func segmentControlClicked(_ sender: UISegmentedControl) {
+        
+        switch sender.selectedSegmentIndex {
+        case 0:
             self.imgView.image = self.model?.pokemonFrontImage
             UIView.transition(with: imgView, duration: 0.3, options: .transitionFlipFromLeft, animations: nil, completion: nil)
+            break
+            
+        case 1:
+            self.imgView.image = self.backDefaultImage
+            UIView.transition(with: imgView, duration: 0.3, options: .transitionFlipFromLeft, animations: nil, completion: nil)
+            break
+        default:
+            break
         }
+        
     }
+    
     
     @IBAction func closeButtonClicked(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)

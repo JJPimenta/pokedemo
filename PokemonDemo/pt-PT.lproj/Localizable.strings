@@ -12,6 +12,8 @@
 "pokemon.notfound.message" = "Não foi possível obter informação relativa ao Pokémon procurado";
 "pokemon.notfound.button" = "Ok";
 
+"frontImage" = "Frente";
+"backImage" = "Trás";
 "height" = "Altura:";
 "weight" = "Peso:";
 "type" = "Tipo:";
