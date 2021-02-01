@@ -33,31 +33,47 @@ public class PokemonDetailViewModel {
         }
     }
     
+    ///Method used to format the height variable and set the height label
+    ///- Parameters:
+    ///- height: Pokemon height
     func getPokemonHeight(height: Int?) -> String {
         if height == nil {
             return NSLocalizedString("noheight", comment: "")
         }
         
-        //Since pokemon height is decimeters we have to divided it by 10
+        //Since pokemon height is in decimeters we have to divided it by 10
         let h = Double(height ?? 0) / 10
         return String(h) + "m"
     }
     
+    ///Method used to format the weight variable and set the weight label
+    ///- Parameters:
+    ///- weight: Pokemon weight
     func getPokemonWeight(weight: Int?) -> String {
         if weight == nil {
             return NSLocalizedString("noweight", comment: "")
         }
         
-        //Since pokemon weight is hectograms we have to divided it by 10
+        //Since pokemon weight is in hectograms we have to divided it by 10
         let w = Double(weight ?? 0) / 10
-        return String(w) + "m"
+        return String(w) + "kg"
     }
     
+    ///Method used to setup the views regarding the Pokémon type.
+    ///- Parameters:
+    ///- types: Array containg the Pokémon types
+    ///- primaryView: The view containing the label of the primary Pokemon type
+    ///- secondaryView: The view containing the label of the secondary Pokémon type
+    ///- primaryLabel: The label of the primary Pokémon type
+    ///- secondaryLabel: The label of the secondary Pokémon type
+    ///- typesTitle: The label of the types title
     func fillPokeTypeInformation(types: [Types]?, primaryView: UIView, secondaryView: UIView, primaryLabel: UILabel, secondaryLabel: UILabel, typesTitle: UILabel) {
         
+        //Instanciate a new PokeType structure
         let pokeTypeStruct = PokeType()
         
         if types == nil {
+            //If types array is nil, hide both views and Type title label.
             typesTitle.isHidden = true
             primaryView.isHidden = true
             secondaryView.isHidden = true
