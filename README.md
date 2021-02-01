@@ -1,6 +1,6 @@
 # Pokedemo
 
-A iOS application that retrieves and shows Pokémon information from an external API.
+An iOS application that retrieves and shows Pokémon information from an external API.
 
 ## Desenvolvimento
 
@@ -68,5 +68,4 @@ A iOS application that retrieves and shows Pokémon information from an external
 - [ ] Add Pokémon ability information
 - [ ] Add Pokémon basic stat information
 - [ ] Add custom loading animation
-- [ ] Improve readme.md with architecture
-- [ ] Verificar a possibilidade de adicionar libs externas através de CocoaPods/Podfile
+- [ ] Improve readme.md with app architecture
